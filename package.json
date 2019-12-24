@@ -1,0 +1,25 @@
+{
+  "name": "przelewy24",
+  "version": "1.0.0",
+  "description": "A simple library for connecting przelewy24 service",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kasvith/node-przelewy24.git"
+  },
+  "keywords": [
+    "przelewy24",
+    "nodejs",
+    "przelewy",
+    "library"
+  ],
+  "author": "Kasun Vithanage",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kasvith/node-przelewy24/issues"
+  },
+  "homepage": "https://github.com/kasvith/node-przelewy24#readme"
+}
