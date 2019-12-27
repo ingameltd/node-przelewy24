@@ -6,83 +6,7 @@ import * as querystring from 'querystring';
 const BaseUrl = 'https://secure.przelewy24.pl/';
 const SandboxUrl = 'https://sandbox.przelewy24.pl/';
 
-const API_VERSION = '3.2'
-
-interface BaseRequestParams {
-  /**
-   * Merchant ID
-   *
-   * @type {number}
-   * @memberof BaseRequestParams
-   */
-  p24_merchant_id: number;
-
-  /**
-   * Shop ID (default Merchant ID)
-   *
-   * @type {number}
-   * @memberof BaseRequestParams
-   */
-  p24_pos_id: number;
-
-  /**
-   * API VERSION default to 3.2
-   *
-   * @type {string}
-   * @memberof BaseRequestParams
-   */
-  p24_api_version: string;
-}
-
-enum CurrencyType {
-  PLN = 'PLN',
-  EUR = 'EUR',
-  GBP = 'GPB',
-  CZK = 'CZK'
-}
-
-interface PaymentOptions {
-  /**
-   * A unique ID from Merchant’s system
-   *
-   * @type {string}
-   * @memberof PaymentOptions
-   */
-  p24_session_id: string;
-
-  /**
-   * Amount, presented in 1/100 of the currency.
-   * __Example: 12,30 PLN = 1230__
-   *
-   * @type {number}
-   * @memberof PaymentOptions
-   */
-  p24_amount: number;
-
-  /**
-   * PLN, EUR, GBP, CZK
-   *
-   * @type {CurrencyType}
-   * @memberof PaymentOptions
-   */
-  p24_currency: CurrencyType;
-
-  /**
-   * Transaction description
-   *
-   * @type {string}
-   * @memberof PaymentOptions
-   */
-  p24_description: string;
-
-  /**
-   * Client’s email address
-   *
-   * @type {string}
-   * @memberof PaymentOptions
-   */
-  p24_email: string;
-}
+const API_VERSION = '3.2';
 
 class Przelewy24 {
   merchantId: number;
@@ -103,9 +27,9 @@ class Przelewy24 {
     }
 
     if (!testMode) {
-      this.client = Axios.create({ baseURL: BaseUrl })
+      this.client = Axios.create({ baseURL: BaseUrl });
     } else {
-      this.client = Axios.create({ baseURL: SandboxUrl })
+      this.client = Axios.create({ baseURL: SandboxUrl });
     }
 
     this.base = {
@@ -122,20 +46,20 @@ class Przelewy24 {
   public async testConnection () {
     const hash = crypto.createHash('md5')
       .update(`${this.posId}|${this.salt}`)
-      .digest('hex')
+      .digest('hex');
     const data = {
       p24_merchant_id: this.merchantId,
       p24_pos_id: this.posId,
       p24_sign: hash
     }
 
-    const result = await this.client.post('/testConnection', data)
-    const responseData = querystring.decode(result.data)
+    const result = await this.client.post('/testConnection', data);
+    const responseData = querystring.decode(result.data);
 
     if (responseData['error'] !== '0') {
-      throw new Error(`Unable to connect ${responseData['errorMessage']}`)
+      throw new Error(`Unable to connect ${responseData['errorMessage']}`);
     }
 
-    return true
+    return true;
   }
 }
