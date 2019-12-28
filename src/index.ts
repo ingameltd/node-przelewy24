@@ -23,4 +23,15 @@
  *
  */
 
+export * from './BaseParameters'
+export * from './CharacterEncoding'
+export * from './CountryCode'
+export * from './CurrencyType'
+export * from './Language'
+export * from './P24Error'
+export * from './P24ValidationError'
+export * from './Payment'
+export * from './PaymentOptions'
 export * from './Przelewy24'
+export * from './ShoppingDetail'
+export * from './TransactionVerification'

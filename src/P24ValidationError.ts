@@ -23,6 +23,13 @@
  * 
  */
 
+/**
+ * Validation error
+ *
+ * @export
+ * @class P24ValidationError
+ * @extends {Error}
+ */
 export class P24ValidationError extends Error {
     constructor(message?: string) {
         super(message); // 'Error' breaks prototype chain here

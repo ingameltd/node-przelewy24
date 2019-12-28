@@ -27,7 +27,6 @@ import { ShoppingDetail } from "./ShoppingDetail";
 import { PaymentOptions } from "./PaymentOptions";
 import { BaseParameters } from "./BaseParameters";
 import crypto from 'crypto';
-import { P24Error } from './P24Error';
 import { P24ValidationError } from './P24ValidationError';
 
 function validateLength (key: string | undefined, maxLength: number, keyName: string) {

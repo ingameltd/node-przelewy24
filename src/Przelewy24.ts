@@ -28,11 +28,7 @@ import Axios from 'axios';
 import crypto from 'crypto';
 import querystring from 'querystring';
 
-import { ShoppingDetail } from "./ShoppingDetail";
-import { PaymentOptions } from "./PaymentOptions";
 import { BaseParameters } from "./BaseParameters";
-import { CountryCode } from "./CountryCode";
-import { CurrencyType } from "./CurrencyType";
 import { Payment } from "./Payment";
 import { P24Error } from './P24Error';
 import { TransactionVerification } from '../dist/TransactionVerification';
