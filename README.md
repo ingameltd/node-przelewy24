@@ -1,5 +1,9 @@
-# przelewy24
-NodeJS Library for przelewy24
+# Przelewy24 for NodeJS
+
+NodeJS Library for Przelewy24. This library is written in Typescript to provide
+best typesafety.
+
+This library provides an elegant way to create/verify transactions easily.
 
 ```typescript
 const p24 = new Przelewy24(1234, 12, 'dsfsdfs', true)
