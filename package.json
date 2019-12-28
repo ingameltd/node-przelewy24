@@ -8,7 +8,7 @@
     "prepublish": "npm run build",
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "tsc lib/index.ts"
+    "test": "echo 'no tests yet'"
   },
   "repository": {
     "type": "git",
