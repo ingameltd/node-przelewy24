@@ -1,3 +1,28 @@
+/**
+ * MIT License
+ *
+ * Copyright (c) 2019 Kasun Vithanage
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ */
+
 import { AxiosInstance } from 'axios';
 import Axios from 'axios';
 import crypto from 'crypto';
@@ -111,33 +136,3 @@ export class Przelewy24 {
         throw new P24Error(`${responseData['error']}`, `${responseData['errorMessage']}`)
     }
 }
-
-const p24 = new Przelewy24(1234, 12, 'dsfsdfs', true)
-
-async function test () {
-    try {
-        const r = await p24.testConnection()
-        console.log(r)
-    } catch (error) {
-
-        console.log(error)
-    }
-
-    const paymentParam: PaymentOptions = {
-        p24_amount: 100,
-        p24_country: CountryCode.Poland,
-        p24_currency: CurrencyType.PLN,
-        p24_description: 'test',
-        p24_email: 'abc@123.com',
-        p24_session_id: '122223333',
-        p24_url_return: 'http://lcff.com'
-    }
-
-    const sd1: ShoppingDetail[] = [
-        { name: 'wewe', price: 133, quantity: 4 },
-        { name: '11wewe', price: 13, quantity: 1 }
-    ]
-    await p24.getPaymentLink(new Payment(paymentParam, sd1))
-}
-
-test()

@@ -1,3 +1,28 @@
+/**
+ * MIT License
+ *
+ * Copyright (c) 2019 Kasun Vithanage
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ */
+
 import { CurrencyType } from "./CurrencyType";
 import { CountryCode } from "./CountryCode";
 import { Language } from "./Language";
@@ -15,6 +40,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_session_id: string;
+
     /**
      * Amount, presented in 1/100 of the currency.
      * __Example: 12,30 PLN = 1230__
@@ -23,6 +49,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_amount: number;
+
     /**
      * PLN, EUR, GBP, CZK
      *
@@ -30,6 +57,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_currency: CurrencyType;
+
     /**
      * Transaction description
      *
@@ -37,6 +65,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_description: string;
+
     /**
      * Client’s email address
      *
@@ -44,6 +73,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_email: string;
+
     /**
      * Client’s full name
      *
@@ -51,6 +81,8 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_client?: string;
+
+
     /**
      * Client’s address
      *
@@ -58,6 +90,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_address?: string;
+
     /**
      * Client’s zip-code
      *
@@ -65,6 +98,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_zip?: string;
+
     /**
      * Client’s city
      *
@@ -72,13 +106,15 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_city?: string;
+
     /**
      * Country code
      *
-     * @type {string}
+     * @type {CountryCode}
      * @memberof PaymentOptions
      */
     p24_country: CountryCode;
+
     /**
      *  Client’s phone number: 481321132123
      *
@@ -86,6 +122,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_phone?: string;
+
     /**
      * Langs pl, en, de, es, it
      *
@@ -93,6 +130,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_language?: Language;
+
     /**
      * An ID of preferred (chosen) payment method.
      * Full list of payment methods
@@ -102,6 +140,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_method?: number;
+
     /**
      * Return address, where Client will be redirected to,
      * after the transaction is completed.
@@ -110,6 +149,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_url_return: string;
+
     /**
      * Address where the status of a transaction is sent.
      * It can be omitted if stored in P24 system.
@@ -118,6 +158,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_url_status?: string;
+
     /**
      * Time limit for the transaction to be processed,
      * 0 - unlimited, max. 99(in minutes)
@@ -126,6 +167,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_time_limit?: number;
+
     /**
      * Whether the Client has to wait for the result in P24 system ( 0 / 1 )
      *
@@ -133,6 +175,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_wait_for_result?: number;
+
     /**
      * 1 - CC,
      * 2 – bank transfers,
@@ -146,6 +189,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_channel?: number;
+
     /**
      * Shipping/packaging cost
      *
@@ -153,6 +197,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_shipping?: number;
+
     /**
      * Additional transfer’s description in Client’s bank.
      *
@@ -160,6 +205,7 @@ export interface PaymentOptions {
      * @memberof PaymentOptions
      */
     p24_transfer_label?: string;
+
     /**
      * Character encoding:
      * ISO-8859-2, UTF-8, Windows-1250
