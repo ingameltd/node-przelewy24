@@ -7,6 +7,7 @@
   "scripts": {
     "prepublish": "npm run build",
     "build": "tsc",
+    "build:check": "tsc --noEmit",
     "watch": "tsc --watch",
     "test": "echo 'no tests yet'"
   },
@@ -20,6 +21,9 @@
     "przelewy",
     "library"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Kasun Vithanage",
   "license": "MIT",
   "bugs": {
