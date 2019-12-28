@@ -31,7 +31,7 @@ import querystring from 'querystring';
 import { BaseParameters } from "./BaseParameters";
 import { Payment } from "./Payment";
 import { P24Error } from './P24Error';
-import { TransactionVerification } from '../dist/TransactionVerification';
+import { TransactionVerification } from './TransactionVerification';
 
 export const ApiVersion = '3.2';
 
