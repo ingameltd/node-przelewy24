@@ -1,5 +1,5 @@
 {
-  "name": "@kasvith/przelewy24",
+  "name": "@kasvith/node-przelewy24",
   "version": "0.1.0",
   "description": "A simple library for connecting przelewy24 service",
   "main": "dist/index.js",
