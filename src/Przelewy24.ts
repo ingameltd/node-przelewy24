@@ -10,8 +10,7 @@ import { CountryCode } from "./CountryCode";
 import { CurrencyType } from "./CurrencyType";
 import { Payment } from "./Payment";
 import { P24Error } from './P24Error';
-import { URL } from 'url';
-
+import { TransactionVerification } from '../dist/TransactionVerification';
 
 export const ApiVersion = '3.2';
 
@@ -20,6 +19,7 @@ const SandboxUrl = 'https://sandbox.przelewy24.pl';
 const testConnection = '/testConnection';
 const trnRegister = '/trnRegister';
 const trnRequest = '/trnRequest';
+const trnVerify = '/trnVerify';
 
 export class Przelewy24 {
     private merchantId: number;
@@ -76,18 +76,39 @@ export class Przelewy24 {
         }
         return true;
     }
+
     /**
-     * getPaymentLink
+     * Get a payment link
+     *
+     * @param {Payment} payment - Payment object
+     * @returns
+     * @memberof Przelewy24
      */
     public async getPaymentLink (payment: Payment) {
         const data = payment.build(this.baseParams);
         const result = await this.client.post(trnRegister, data);
         const responseData = querystring.decode(result.data);
-        if (responseData['error'] !== '0') {
-            throw new P24Error(`${responseData['error']}`, `${responseData['errorMessage']}`)
+        if (responseData['error'] === '0') {
+            return `${this.baseUrl}${trnRequest}/${responseData['token']}`
         }
 
-        return `${this.baseUrl}${trnRequest}/${responseData['token']}`
+        throw new P24Error(`${responseData['error']}`, `${responseData['errorMessage']}`)
+    }
+
+    /**
+     * Verifies a transaction
+     *
+     * @param {TransactionVerification} verification
+     * @memberof Przelewy24
+     */
+    public async verifyTransaction (verification: TransactionVerification) {
+        const result = await this.client.post(trnVerify, verification);
+        const responseData = querystring.decode(result.data);
+        if (responseData['error'] === '0') {
+            return true
+        }
+
+        throw new P24Error(`${responseData['error']}`, `${responseData['errorMessage']}`)
     }
 }
 
