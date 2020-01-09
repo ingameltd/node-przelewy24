@@ -67,7 +67,14 @@ Verifies a payment on p24 system. Once a sucessfull payment happen, callback url
 
 ```typescript
 // extract all information from callback request
-const {p24_merchant_id, p24_pos_id, p24_session_id, p24_amount, p24_currency, p24_order_id, } = req.body;
+const { 
+    p24_merchant_id,
+    p24_pos_id,
+    p24_session_id,
+    p24_amount,
+    p24_currency,
+    p24_order_id
+} = req.body;
 
 const verification: TransactionVerification = {
     p24_merchant_id: p24_merchant_id,

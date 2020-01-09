@@ -120,7 +120,14 @@
 				</a>
 				<p>Verifies a payment on p24 system. Once a sucessfull payment happen, callback url is triggered with a <code>POST</code> request containing all the details for verify a transaction. When this happens the transaction becomes valid. <code>TransactionVerification</code> model is used to verify a transaction.</p>
 				<pre><code class="language-typescript"><span class="hljs-comment">// extract all information from callback request</span>
-<span class="hljs-keyword">const</span> {p24_merchant_id, p24_pos_id, p24_session_id, p24_amount, p24_currency, p24_order_id, } = req.body;
+<span class="hljs-keyword">const</span> { 
+    p24_merchant_id,
+    p24_pos_id,
+    p24_session_id,
+    p24_amount,
+    p24_currency,
+    p24_order_id
+} = req.body;
 
 <span class="hljs-keyword">const</span> verification: TransactionVerification = {
     p24_merchant_id: p24_merchant_id,
