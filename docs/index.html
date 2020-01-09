@@ -1,0 +1,268 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@kasvith/node-przelewy24 - v1.0.0</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@kasvith/node-przelewy24 - v1.0.0</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> @kasvith/node-przelewy24 - v1.0.0</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#przelewy24-for-nodejs" id="przelewy24-for-nodejs" style="color: inherit; text-decoration: none;">
+					<h1>Przelewy24 for NodeJS</h1>
+				</a>
+				<p><img src="https://img.shields.io/github/workflow/status/kasvith/node-przelewy24/Build" alt=""> <img src="https://img.shields.io/github/license/kasvith/node-przelewy24" alt=""> <img src="https://img.shields.io/npm/v/@kasvith/node-przelewy24" alt=""> <img src="https://img.shields.io/github/last-commit/kasvith/node-przelewy24" alt=""></p>
+				<p>NodeJS Library for Przelewy24. This library is written in Typescript to provide
+				best typesafety.</p>
+				<p>This library provides an elegant way to create/verify transactions easily.</p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<pre><code class="language-bash">npm install --save @kasvith/node-przelewy24</code></pre>
+				<a href="#typescript" id="typescript" style="color: inherit; text-decoration: none;">
+					<h2>Typescript</h2>
+				</a>
+				<a href="#importing" id="importing" style="color: inherit; text-decoration: none;">
+					<h3>Importing</h3>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Przelewy24, PaymentOptions, ShoppingDetail, TransactionVerification } <span class="hljs-keyword">from</span> <span class="hljs-string">'@kasvith/node-przelewy24'</span>;</code></pre>
+				<a href="#initialization" id="initialization" style="color: inherit; text-decoration: none;">
+					<h3>Initialization</h3>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> p24 = <span class="hljs-keyword">new</span> Przelewy24(MERCHANT_ID, POS_ID, <span class="hljs-string">'SALT'</span>, TEST_MODE);</code></pre>
+				<a href="#testing-connection" id="testing-connection" style="color: inherit; text-decoration: none;">
+					<h3>Testing connection</h3>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> p24.testConnection();
+<span class="hljs-built_in">console</span>.log(result); <span class="hljs-comment">// true on success or an error being throw P24Error</span></code></pre>
+				<a href="#get-payment-link" id="get-payment-link" style="color: inherit; text-decoration: none;">
+					<h3>Get payment link</h3>
+				</a>
+				<p>Prepare following details to initiate a payment</p>
+				<pre><code class="language-typescript"><span class="hljs-comment">// prepare payment options(required)</span>
+<span class="hljs-keyword">const</span> paymentParam: PaymentOptions = {
+        p24_amount: <span class="hljs-number">1250</span>, <span class="hljs-comment">// 12.50PLN -&gt; 1250</span>
+        p24_country: CountryCode.Poland, <span class="hljs-comment">// set country codes</span>
+        p24_currency: CurrencyType.PLN, <span class="hljs-comment">// set currency</span>
+        p24_description: <span class="hljs-string">'a fancy item'</span>, <span class="hljs-comment">// set description</span>
+        p24_email: <span class="hljs-string">'jhondoe@gmail.com'</span>, <span class="hljs-comment">// customer's email</span>
+        p24_session_id: <span class="hljs-string">'kdsfksfklfklfffl'</span>, <span class="hljs-comment">// a unique id from merchant's system</span>
+        p24_url_return: <span class="hljs-string">'http://myawesomeapp.com/p24callback'</span> <span class="hljs-comment">// callback</span>
+    };
+
+<span class="hljs-comment">// prepare shopping details(optional)</span>
+<span class="hljs-keyword">const</span> shoppingDetails: ShoppingDetail[] = [
+        { name: <span class="hljs-string">'a book'</span>, price: <span class="hljs-number">13</span>, quantity: <span class="hljs-number">4</span> },
+        { name: <span class="hljs-string">'a pen'</span>, price: <span class="hljs-number">13</span>, quantity: <span class="hljs-number">1</span> },
+        ...
+    ];
+
+<span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> p24.getPaymentLink(<span class="hljs-keyword">new</span> Payment(paymentParam, shoppingDetails));
+<span class="hljs-built_in">console</span>.log(result) <span class="hljs-comment">// prints a valid url to pay the payment or throws an error</span></code></pre>
+				<a href="#verifies-a-payment" id="verifies-a-payment" style="color: inherit; text-decoration: none;">
+					<h3>Verifies a payment</h3>
+				</a>
+				<p>Verifies a payment on p24 system. Once a sucessfull payment happen, callback url is triggered with a <code>POST</code> request containing all the details for verify a transaction. When this happens the transaction becomes valid. <code>TransactionVerification</code> model is used to verify a transaction.</p>
+				<pre><code class="language-typescript"><span class="hljs-comment">// extract all information from callback request</span>
+<span class="hljs-keyword">const</span> { 
+    p24_merchant_id,
+    p24_pos_id,
+    p24_session_id,
+    p24_amount,
+    p24_currency,
+    p24_order_id
+} = req.body;
+
+<span class="hljs-keyword">const</span> verification: TransactionVerification = {
+    p24_merchant_id: p24_merchant_id,
+    p24_pos_id: p24_pos_id,
+    p24_session_id: p24_session_id,
+    p24_amount: p24_amount,
+    p24_currency: p24_currency,
+    p24_order_id: p24_order_id,
+    p24_sign: p24_sign
+}
+
+<span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> p24.verifyTransaction(verification)
+<span class="hljs-built_in">console</span>.log(result) <span class="hljs-comment">// true on success or throws an error</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_baseparameters_.html">&quot;<wbr>Base<wbr>Parameters&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_characterencoding_.html">&quot;<wbr>Character<wbr>Encoding&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_countrycode_.html">&quot;<wbr>Country<wbr>Code&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_currencytype_.html">&quot;<wbr>Currency<wbr>Type&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_language_.html">&quot;<wbr>Language&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_p24error_.html">&quot;<wbr>P24<wbr>Error&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_p24validationerror_.html">&quot;<wbr>P24<wbr>Validation<wbr>Error&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_payment_.html">&quot;<wbr>Payment&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_paymentoptions_.html">&quot;<wbr>Payment<wbr>Options&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_przelewy24_.html">&quot;<wbr>Przelewy24&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_shoppingdetail_.html">&quot;<wbr>Shopping<wbr>Detail&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_transactionverification_.html">&quot;<wbr>Transaction<wbr>Verification&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
