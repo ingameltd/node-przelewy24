@@ -9,7 +9,8 @@
     "build": "tsc",
     "build:check": "tsc --noEmit",
     "watch": "tsc --watch",
-    "test": "echo 'no tests yet'"
+    "test": "echo 'no tests yet'",
+    "docs": "npx typedoc --out docs src"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   "homepage": "https://github.com/kasvith/node-przelewy24#readme",
   "devDependencies": {
     "@types/node": "^13.1.0",
+    "typedoc": "^0.15.6",
     "typescript": "^3.7.4"
   },
   "dependencies": {
