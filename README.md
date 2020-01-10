@@ -7,6 +7,10 @@ best typesafety.
 
 This library provides an elegant way to create/verify transactions easily.
 
+## Documentation
+
+Documentation can be in read [here](https://kasvith.github.io/node-przelewy24).
+
 ## Installation
 
 ```bash
