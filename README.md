@@ -51,7 +51,8 @@ const paymentParam: PaymentOptions = {
         p24_description: 'a fancy item', // set description
         p24_email: 'jhondoe@gmail.com', // customer's email
         p24_session_id: 'kdsfksfklfklfffl', // a unique id from merchant's system
-        p24_url_return: 'http://myawesomeapp.com/p24callback' // callback
+        p24_url_return: 'http://myawesomeapp.com/payment_success?order=abc', // return user to following url after a valid transaction
+        p24_url_status: 'http://myawesomeapp.com/p24callback'
     };
 
 // prepare shopping details(optional)
@@ -67,11 +68,11 @@ console.log(result) // prints a valid url to pay the payment or throws an error
 
 ### Verifies a payment
 
-Verifies a payment on p24 system. Once a sucessfull payment happen, callback url is triggered with a `POST` request containing all the details for verify a transaction. When this happens the transaction becomes valid. `TransactionVerification` model is used to verify a transaction.
+Verifies a payment on p24 system. Once a sucessfull payment happen, `http://myawesomeapp.com/p24callback` is triggered with a `POST` request containing all the details for verify a transaction. When this happens the transaction becomes valid. `TransactionVerification` model is used to verify a transaction.
 
 ```typescript
 // extract all information from callback request
-const { 
+const {
     p24_merchant_id,
     p24_pos_id,
     p24_session_id,
@@ -93,4 +94,13 @@ const verification: TransactionVerification = {
 const result = await p24.verifyTransaction(verification)
 console.log(result) // true on success or throws an error
 
+```
+
+### Validate IP
+
+Library provides method to validate IP addresses with P24 backends
+
+```typescript
+const valid = Przelewy24.isIpValid('127.0.0.1')
+console.log(valid)
 ```

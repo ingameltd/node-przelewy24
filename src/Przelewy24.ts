@@ -41,6 +41,13 @@ const testConnection = '/testConnection';
 const trnRegister = '/trnRegister';
 const trnRequest = '/trnRequest';
 const trnVerify = '/trnVerify';
+const validIps = [
+    '91.216.191.181',
+    '91.216.191.182',
+    '91.216.191.183',
+    '91.216.191.184',
+    '91.216.191.185',
+];
 
 export class Przelewy24 {
     private merchantId: number;
@@ -130,5 +137,17 @@ export class Przelewy24 {
         }
 
         throw new P24Error(`${responseData['error']}`, `${responseData['errorMessage']}`)
+    }
+
+    /**
+     * Validates IP with P24 backends
+     *
+     * @static
+     * @param {string} ip - IP Address
+     * @returns {boolean} true on validated ip 
+     * @memberof Przelewy24
+     */
+    public static isIpValid (ip: string): boolean {
+        return validIps.includes(ip)
     }
 }
