@@ -72,10 +72,7 @@ export class Przelewy24 {
         if (this.posId === 0)
             this.posId = this.merchantId;
 
-        if (!testMode)
-            this.baseUrl = Przelewy24Base;
-        else
-            this.baseUrl = SandboxUrl;
+        this.baseUrl = testMode ? Przelewy24Base : SandboxUrl;
 
         this.client = Axios.create({ baseURL: this.baseUrl });
         this.baseParams = {
@@ -84,9 +81,12 @@ export class Przelewy24 {
             p24_api_version: ApiVersion
         };
     }
+
     /**
-     * TestConnection to Przelewy24
-     * return true on success
+     * Tests the connection to p24
+     *
+     * @returns - {boolean} returns true on success
+     * @memberof Przelewy24
      */
     public async testConnection () {
         const hash = crypto.createHash('md5')
@@ -109,7 +109,7 @@ export class Przelewy24 {
      * Get a payment link
      *
      * @param {Payment} payment - Payment object
-     * @returns
+     * @returns - 
      * @memberof Przelewy24
      */
     public async getPaymentLink (payment: Payment) {
@@ -144,7 +144,7 @@ export class Przelewy24 {
      *
      * @static
      * @param {string} ip - IP Address
-     * @returns {boolean} true on validated ip 
+     * @returns - {boolean} true on validated ip 
      * @memberof Przelewy24
      */
     public static isIpValid (ip: string): boolean {
