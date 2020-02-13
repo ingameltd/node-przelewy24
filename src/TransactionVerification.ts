@@ -51,7 +51,7 @@ export interface TransactionVerification {
     /**
      * PLN, EUR, GBP, CZK
      *
-     * @type {CurrencyType}
+     * @type {string}
      * @memberof TransactionVerification
      */
     p24_currency: string;

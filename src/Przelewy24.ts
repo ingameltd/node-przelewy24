@@ -26,7 +26,7 @@
 import { AxiosInstance } from 'axios';
 import Axios from 'axios';
 import crypto from 'crypto';
-import querystring, { ParsedUrlQueryInput } from 'querystring';
+import querystring from 'querystring';
 
 import { BaseParameters } from "./BaseParameters";
 import { Payment } from "./Payment";
@@ -49,6 +49,12 @@ const validIps = [
     '91.216.191.185',
 ];
 
+/**
+ * Create Przelewy24 instance
+ *
+ * @export
+ * @class Przelewy24
+ */
 export class Przelewy24 {
     private merchantId: number;
     private posId: number;
@@ -61,7 +67,7 @@ export class Przelewy24 {
      * Creates an instance of Przelewy24.
      * @param {number} merchantId Merchant ID given by Przelewy24
      * @param {number} posId Shop ID (defaults to merchantId)
-     * @param {string} salt md5 of p24_pos_id|CRC
+     * @param {string} salt CRC key from P24 panel
      * @param {boolean} [testMode=false] Whether to use sandbox or not
      * @memberof Przelewy24
      */
@@ -85,10 +91,10 @@ export class Przelewy24 {
     /**
      * Tests the connection to p24
      *
-     * @returns - {boolean} returns true on success
+     * @returns {boolean} - returns true on success
      * @memberof Przelewy24
      */
-    public async testConnection () {
+    public async testConnection (): Promise<boolean> {
         const hash = crypto.createHash('md5')
             .update(`${this.posId}|${this.salt}`)
             .digest('hex');
@@ -109,10 +115,10 @@ export class Przelewy24 {
      * Get a payment link
      *
      * @param {Payment} payment - Payment object
-     * @returns - 
+     * @returns {string} url to do the payment
      * @memberof Przelewy24
      */
-    public async getPaymentLink (payment: Payment) {
+    public async getPaymentLink (payment: Payment): Promise<string> {
         const data = payment.build(this.baseParams, this.salt);
         const result = await this.client.post(trnRegister, querystring.stringify(data));
         const responseData = querystring.decode(result.data);
@@ -130,7 +136,17 @@ export class Przelewy24 {
      * @memberof Przelewy24
      */
     public async verifyTransaction (verification: TransactionVerification) {
-        const result = await this.client.post(trnVerify, querystring.stringify(<ParsedUrlQueryInput><unknown>verification));
+        const crcData = `${verification.p24_session_id}|${verification.p24_order_id}|${verification.p24_amount}|${verification.p24_currency}|${this.salt}`
+        const hash = crypto.createHash('md5')
+            .update(crcData)
+            .digest('hex');
+        const data = {
+            p24_merchant_id: this.merchantId,
+            p24_pos_id: this.posId,
+            p24_sign: hash,
+            ...verification,
+        }
+        const result = await this.client.post(trnVerify, querystring.stringify(data));
         const responseData = querystring.decode(result.data);
         if (responseData['error'] === '0') {
             return true
@@ -144,7 +160,7 @@ export class Przelewy24 {
      *
      * @static
      * @param {string} ip - IP Address
-     * @returns - {boolean} true on validated ip 
+     * @returns {boolean} - true on validated ip 
      * @memberof Przelewy24
      */
     public static isIpValid (ip: string): boolean {
