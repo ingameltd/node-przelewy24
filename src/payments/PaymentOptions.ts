@@ -23,10 +23,10 @@
  *
  */
 
-import { CurrencyType } from "./CurrencyType";
-import { CountryCode } from "./CountryCode";
-import { Language } from "./Language";
-import { CharacterEncoding } from "./CharacterEncoding";
+import { CurrencyType } from "../enums/CurrencyType";
+import { CountryCode } from "../enums/CountryCode";
+import { Language } from "../enums/Language";
+import { CharacterEncoding } from "../enums/CharacterEncoding";
 /**
  * Payment Options
  *

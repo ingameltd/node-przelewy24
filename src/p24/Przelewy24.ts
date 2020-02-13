@@ -29,9 +29,9 @@ import crypto from 'crypto';
 import querystring from 'querystring';
 
 import { BaseParameters } from "./BaseParameters";
-import { Payment } from "./Payment";
-import { P24Error } from './P24Error';
-import { TransactionVerification } from './TransactionVerification';
+import { Payment } from "../payments/Payment";
+import { P24Error } from '../errors/P24Error';
+import { TransactionVerification } from '../payments/TransactionVerification';
 
 export const ApiVersion = '3.2';
 
