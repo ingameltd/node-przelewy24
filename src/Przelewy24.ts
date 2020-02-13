@@ -26,7 +26,7 @@
 import { AxiosInstance } from 'axios';
 import Axios from 'axios';
 import crypto from 'crypto';
-import querystring from 'querystring';
+import querystring, { ParsedUrlQueryInput } from 'querystring';
 
 import { BaseParameters } from "./BaseParameters";
 import { Payment } from "./Payment";
@@ -72,7 +72,7 @@ export class Przelewy24 {
         if (this.posId === 0)
             this.posId = this.merchantId;
 
-        this.baseUrl = testMode ? Przelewy24Base : SandboxUrl;
+        this.baseUrl = testMode ? SandboxUrl : Przelewy24Base;
 
         this.client = Axios.create({ baseURL: this.baseUrl });
         this.baseParams = {
@@ -97,7 +97,7 @@ export class Przelewy24 {
             p24_pos_id: this.posId,
             p24_sign: hash
         };
-        const result = await this.client.post(testConnection, data);
+        const result = await this.client.post(testConnection, querystring.stringify(data));
         const responseData = querystring.decode(result.data);
         if (responseData['error'] !== '0') {
             throw new P24Error(`${responseData['error']}`, `${responseData['errorMessage']}`);
@@ -113,8 +113,8 @@ export class Przelewy24 {
      * @memberof Przelewy24
      */
     public async getPaymentLink (payment: Payment) {
-        const data = payment.build(this.baseParams);
-        const result = await this.client.post(trnRegister, data);
+        const data = payment.build(this.baseParams, this.salt);
+        const result = await this.client.post(trnRegister, querystring.stringify(data));
         const responseData = querystring.decode(result.data);
         if (responseData['error'] === '0') {
             return `${this.baseUrl}${trnRequest}/${responseData['token']}`
@@ -130,7 +130,7 @@ export class Przelewy24 {
      * @memberof Przelewy24
      */
     public async verifyTransaction (verification: TransactionVerification) {
-        const result = await this.client.post(trnVerify, verification);
+        const result = await this.client.post(trnVerify, querystring.stringify(<ParsedUrlQueryInput><unknown>verification));
         const responseData = querystring.decode(result.data);
         if (responseData['error'] === '0') {
             return true

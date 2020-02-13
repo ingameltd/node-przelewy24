@@ -88,12 +88,17 @@ export class Payment {
     }
 
     /**
-     * build payment
+     * Builds a payment
+     *
+     * @param {BaseParameters} baseParams
+     * @param {string} salt
+     * @returns
+     * @memberof Payment
      */
-    public build (baseParams: BaseParameters) {
+    public build (baseParams: BaseParameters, salt: string) {
         this.validatePayment(); // fail on build
         const shoppingDetails = this.prepareShoppingDetails();
-        const crcStr = `${this.paymentOptions.p24_session_id}|${baseParams.p24_merchant_id}|${this.paymentOptions.p24_amount}|${this.paymentOptions.p24_currency}`;
+        const crcStr = `${this.paymentOptions.p24_session_id}|${baseParams.p24_merchant_id}|${this.paymentOptions.p24_amount}|${this.paymentOptions.p24_currency}|${salt}`;
         const crc = crypto.createHash('md5').update(crcStr).digest('hex');
         return {
             ...baseParams,
