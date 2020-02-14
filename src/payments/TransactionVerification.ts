@@ -23,7 +23,7 @@
  *
  */
 
-import { CurrencyType } from "../enums/CurrencyType";
+import { Currency } from "../enums/Currency";
 
 /**
  * TransactionVerification

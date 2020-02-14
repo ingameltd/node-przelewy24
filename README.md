@@ -27,6 +27,11 @@ import { Przelewy24, PaymentOptions, ShoppingDetail, TransactionVerification } f
 
 ### Initialization
 
+- **MERCHANT_ID** : ID given by P24
+- **POS_ID** : Given by P24(often this referes to Merchant ID)
+- **SALT** : CRC value obtained from p24 panel
+- **TEST_MODE** : Set test mode with sandbox or not
+
 ```typescript
 const p24 = new Przelewy24(MERCHANT_ID, POS_ID, 'SALT', TEST_MODE);
 ```
@@ -68,13 +73,11 @@ console.log(result) // prints a valid url to pay the payment or throws an error
 
 ### Verifies a payment
 
-Verifies a payment on p24 system. Once a sucessfull payment happen, `http://myawesomeapp.com/p24callback` is triggered with a `POST` request containing all the details for verify a transaction. When this happens the transaction becomes valid. `TransactionVerification` model is used to verify a transaction.
+Verifies a payment on p24 system. Once a sucessfull payment happen, `http://myawesomeapp.com/p24callback` is triggered with a `POST` request containing all the details to verify a transaction. **When this happens the transaction becomes valid**. `TransactionVerification` is used to verify a transaction.
 
 ```typescript
 // extract all information from callback request
 const {
-    p24_merchant_id,
-    p24_pos_id,
     p24_session_id,
     p24_amount,
     p24_currency,
@@ -82,13 +85,10 @@ const {
 } = req.body;
 
 const verification: TransactionVerification = {
-    p24_merchant_id: p24_merchant_id,
-    p24_pos_id: p24_pos_id,
     p24_session_id: p24_session_id,
     p24_amount: p24_amount,
     p24_currency: p24_currency,
-    p24_order_id: p24_order_id,
-    p24_sign: p24_sign
+    p24_order_id: p24_order_id
 }
 
 const result = await p24.verifyTransaction(verification)
@@ -102,5 +102,5 @@ Library provides method to validate IP addresses with P24 backends
 
 ```typescript
 const valid = Przelewy24.isIpValid('127.0.0.1')
-console.log(valid)
+console.log(valid) // output false if IP is not from p24
 ```

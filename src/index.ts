@@ -25,8 +25,8 @@
 
 export * from './p24/BaseParameters'
 export * from './enums/CharacterEncoding'
-export * from './enums/CountryCode'
-export * from './enums/CurrencyType'
+export * from './enums/Country'
+export * from './enums/Currency'
 export * from './enums/Language'
 export * from './errors/P24Error'
 export * from './errors/P24ValidationError'
