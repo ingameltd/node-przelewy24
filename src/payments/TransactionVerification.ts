@@ -23,14 +23,44 @@
  *
  */
 
+import { Currency } from "../enums/Currency";
+
 /**
- * Currency Type
+ * TransactionVerification
  *
- * @enum {number}
+ * @export
+ * @interface TransactionVerification
  */
-export enum CurrencyType {
-    PLN = 'PLN',
-    EUR = 'EUR',
-    GBP = 'GPB',
-    CZK = 'CZK'
+export interface TransactionVerification {
+    /**
+     * A unique ID of the transaction from Merchant’s system
+     *
+     * @type {string}
+     * @memberof TransactionVerification
+     */
+    p24_session_id: string;
+
+    /**
+     * Transaction amount from Merchant’s system
+     *
+     * @type {number}
+     * @memberof TransactionVerification
+     */
+    p24_amount: number;
+
+    /**
+     * PLN, EUR, GBP, CZK
+     *
+     * @type {string}
+     * @memberof TransactionVerification
+     */
+    p24_currency: string;
+
+    /**
+     * Transaction number received from P24
+     *
+     * @type {number}
+     * @memberof TransactionVerification
+     */
+    p24_order_id: number;
 }

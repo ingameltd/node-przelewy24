@@ -1,6 +1,6 @@
 {
-  "name": "@kasvith/node-przelewy24",
-  "version": "1.0.2",
+  "name": "@ingameltd/node-przelewy24",
+  "version": "0.1.0",
   "description": "A simple library for connecting przelewy24 service",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kasvith/node-przelewy24.git"
+    "url": "git+https://github.com/ingameltd/node-przelewy24.git"
   },
   "keywords": [
     "przelewy24",
@@ -28,9 +28,9 @@
   "author": "Kasun Vithanage",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kasvith/node-przelewy24/issues"
+    "url": "https://github.com/ingameltd/node-przelewy24/issues"
   },
-  "homepage": "https://github.com/kasvith/node-przelewy24#readme",
+  "homepage": "https://github.com/ingameltd/node-przelewy24#readme",
   "devDependencies": {
     "@types/node": "^13.1.0",
     "typedoc": "^0.15.6",

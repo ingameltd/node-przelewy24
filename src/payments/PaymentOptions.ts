@@ -23,10 +23,10 @@
  *
  */
 
-import { CurrencyType } from "./CurrencyType";
-import { CountryCode } from "./CountryCode";
-import { Language } from "./Language";
-import { CharacterEncoding } from "./CharacterEncoding";
+import { Currency } from "../enums/Currency";
+import { Country } from "../enums/Country";
+import { Language } from "../enums/Language";
+import { CharacterEncoding } from "../enums/CharacterEncoding";
 /**
  * Payment Options
  *
@@ -53,10 +53,10 @@ export interface PaymentOptions {
     /**
      * PLN, EUR, GBP, CZK
      *
-     * @type {CurrencyType}
+     * @type {Currency}
      * @memberof PaymentOptions
      */
-    p24_currency: CurrencyType;
+    p24_currency: Currency;
 
     /**
      * Transaction description
@@ -110,10 +110,10 @@ export interface PaymentOptions {
     /**
      * Country code
      *
-     * @type {CountryCode}
+     * @type {Country}
      * @memberof PaymentOptions
      */
-    p24_country: CountryCode;
+    p24_country: Country;
 
     /**
      *  Client’s phone number: 481321132123

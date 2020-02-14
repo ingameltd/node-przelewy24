@@ -26,9 +26,9 @@
 /**
  * Country Code
  *
- * @enum {number}
+ * @enum {string}
  */
-export enum CountryCode {
+export enum Country {
     Andorra = 'AD',
     Austria = 'AT',
     Belgium = 'BE',
