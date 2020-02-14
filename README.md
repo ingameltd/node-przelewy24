@@ -1,6 +1,6 @@
 # Przelewy24 for NodeJS
 
-![](https://img.shields.io/github/workflow/status/ingameltd/node-przelewy24/Build) ![](https://img.shields.io/github/license/ingameltd/node-przelewy24) ![](https://img.shields.io/npm/v/ingameltd/node-przelewy24) ![](https://img.shields.io/github/last-commit/ingameltd/node-przelewy24)
+![](https://img.shields.io/github/workflow/status/ingameltd/node-przelewy24/Build) ![](https://img.shields.io/github/license/ingameltd/node-przelewy24) ![](https://img.shields.io/npm/v/@ingameltd/node-przelewy24) ![](https://img.shields.io/github/last-commit/ingameltd/node-przelewy24)
 
 NodeJS Library for Przelewy24. This library is written in Typescript to provide
 best typesafety.
