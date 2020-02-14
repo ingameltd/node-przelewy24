@@ -55,22 +55,21 @@ Prepare following details to initiate a payment
 ```typescript
 // prepare payment options(required)
 const paymentParam: PaymentOptions = {
-        p24_amount: 1250, // 12.50PLN -> 1250
-        p24_country: CountryCode.Poland, // set country codes
-        p24_currency: CurrencyType.PLN, // set currency
-        p24_description: 'a fancy item', // set description
-        p24_email: 'jhondoe@gmail.com', // customer's email
-        p24_session_id: '122999333939393939393', // a unique id from merchant's system
-        p24_url_return: 'http://myawesomeapp.com/payment_success?order=abc', // return user to following url after a valid transaction
-        p24_url_status: 'http://myawesomeapp.com/p24callback'
-    };
+    p24_amount: 1250, // 12.50PLN -> 1250
+    p24_country: CountryCode.Poland, // set country codes
+    p24_currency: CurrencyType.PLN, // set currency
+    p24_description: 'a fancy item', // set description
+    p24_email: 'jhondoe@gmail.com', // customer's email
+    p24_session_id: '122999333939393939393', // a unique id from merchant's system
+    p24_url_return: 'http://myawesomeapp.com/payment_success?order=abc', // return user to following url after a valid transaction
+    p24_url_status: 'http://myawesomeapp.com/p24callback'
+};
 
 // prepare shopping details(optional)
 const shoppingDetails: ShoppingDetail[] = [
-        { name: 'a book', price: 13, quantity: 4 },
-        { name: 'a pen', price: 13, quantity: 1 },
-        ...
-    ];
+    { name: 'a book', price: 13, quantity: 4 },
+    { name: 'a pen', price: 13, quantity: 1 }
+];
 
 const result = await p24.getPaymentLink(new Payment(paymentParam, shoppingDetails));
 console.log(result) // prints a valid url to pay the payment or throws an error
