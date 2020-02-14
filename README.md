@@ -22,7 +22,12 @@ npm install --save @ingameltd/node-przelewy24
 ### Importing
 
 ```typescript
-import { Przelewy24, PaymentOptions, ShoppingDetail, TransactionVerification } from '@ingameltd/node-przelewy24';
+import { 
+    Przelewy24,
+    PaymentOptions,
+    ShoppingDetail,
+    TransactionVerification
+} from '@ingameltd/node-przelewy24';
 ```
 
 ### Initialization
