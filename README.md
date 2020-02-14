@@ -9,12 +9,12 @@ This library provides an elegant way to create/verify transactions easily.
 
 ## Documentation
 
-Documentation can be in read [here](https://kasvith.github.io/node-przelewy24).
+Documentation can be in read [here](https://ingameltd.github.io/node-przelewy24).
 
 ## Installation
 
 ```bash
-npm install --save @kasvith/node-przelewy24
+npm install --save @ingameltd/node-przelewy24
 ```
 
 ## Typescript
@@ -22,7 +22,7 @@ npm install --save @kasvith/node-przelewy24
 ### Importing
 
 ```typescript
-import { Przelewy24, PaymentOptions, ShoppingDetail, TransactionVerification } from '@kasvith/node-przelewy24';
+import { Przelewy24, PaymentOptions, ShoppingDetail, TransactionVerification } from '@ingameltd/node-przelewy24';
 ```
 
 ### Initialization
@@ -55,7 +55,7 @@ const paymentParam: PaymentOptions = {
         p24_currency: CurrencyType.PLN, // set currency
         p24_description: 'a fancy item', // set description
         p24_email: 'jhondoe@gmail.com', // customer's email
-        p24_session_id: 'kdsfksfklfklfffl', // a unique id from merchant's system
+        p24_session_id: '122999333939393939393', // a unique id from merchant's system
         p24_url_return: 'http://myawesomeapp.com/payment_success?order=abc', // return user to following url after a valid transaction
         p24_url_status: 'http://myawesomeapp.com/p24callback'
     };
