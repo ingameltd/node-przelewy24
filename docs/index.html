@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@kasvith/node-przelewy24 - v1.0.2</title>
+	<title>@ingameltd/node-przelewy24 - v1.0.0</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">@kasvith/node-przelewy24 - v1.0.2</a>
+					<a href="index.html" class="title">@ingameltd/node-przelewy24 - v1.0.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -56,7 +56,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> @kasvith/node-przelewy24 - v1.0.2</h1>
+			<h1> @ingameltd/node-przelewy24 - v1.0.0</h1>
 		</div>
 	</div>
 </header>
@@ -67,28 +67,39 @@
 				<a href="#przelewy24-for-nodejs" id="przelewy24-for-nodejs" style="color: inherit; text-decoration: none;">
 					<h1>Przelewy24 for NodeJS</h1>
 				</a>
-				<p><img src="https://img.shields.io/github/workflow/status/kasvith/node-przelewy24/Build" alt=""> <img src="https://img.shields.io/github/license/kasvith/node-przelewy24" alt=""> <img src="https://img.shields.io/npm/v/@kasvith/node-przelewy24" alt=""> <img src="https://img.shields.io/github/last-commit/kasvith/node-przelewy24" alt=""></p>
+				<p><img src="https://img.shields.io/github/workflow/status/ingameltd/node-przelewy24/Build" alt=""> <img src="https://img.shields.io/github/license/ingameltd/node-przelewy24" alt=""> <img src="https://img.shields.io/npm/v/@ingameltd/node-przelewy24" alt=""> <img src="https://img.shields.io/github/last-commit/ingameltd/node-przelewy24" alt=""></p>
 				<p>NodeJS Library for Przelewy24. This library is written in Typescript to provide
 				best typesafety.</p>
 				<p>This library provides an elegant way to create/verify transactions easily.</p>
 				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
 					<h2>Documentation</h2>
 				</a>
-				<p>Documentation can be in read <a href="https://kasvith.github.io/node-przelewy24">here</a>.</p>
+				<p>Documentation can be in read <a href="https://ingameltd.github.io/node-przelewy24">here</a>.</p>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
-				<pre><code class="language-bash">npm install --save @kasvith/node-przelewy24</code></pre>
+				<pre><code class="language-bash">npm install --save @ingameltd/node-przelewy24</code></pre>
 				<a href="#typescript" id="typescript" style="color: inherit; text-decoration: none;">
 					<h2>Typescript</h2>
 				</a>
 				<a href="#importing" id="importing" style="color: inherit; text-decoration: none;">
 					<h3>Importing</h3>
 				</a>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Przelewy24, PaymentOptions, ShoppingDetail, TransactionVerification } <span class="hljs-keyword">from</span> <span class="hljs-string">'@kasvith/node-przelewy24'</span>;</code></pre>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {
+    Przelewy24,
+    PaymentOptions,
+    ShoppingDetail,
+    TransactionVerification
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'@ingameltd/node-przelewy24'</span>;</code></pre>
 				<a href="#initialization" id="initialization" style="color: inherit; text-decoration: none;">
 					<h3>Initialization</h3>
 				</a>
+				<ul>
+					<li><strong>MERCHANT_ID</strong> : ID given by P24</li>
+					<li><strong>POS_ID</strong> : Given by P24(often this referes to Merchant ID)</li>
+					<li><strong>SALT</strong> : CRC value obtained from p24 panel</li>
+					<li><strong>TEST_MODE</strong> : Set test mode with sandbox or not</li>
+				</ul>
 				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> p24 = <span class="hljs-keyword">new</span> Przelewy24(MERCHANT_ID, POS_ID, <span class="hljs-string">'SALT'</span>, TEST_MODE);</code></pre>
 				<a href="#testing-connection" id="testing-connection" style="color: inherit; text-decoration: none;">
 					<h3>Testing connection</h3>
@@ -101,33 +112,30 @@
 				<p>Prepare following details to initiate a payment</p>
 				<pre><code class="language-typescript"><span class="hljs-comment">// prepare payment options(required)</span>
 <span class="hljs-keyword">const</span> paymentParam: PaymentOptions = {
-        p24_amount: <span class="hljs-number">1250</span>, <span class="hljs-comment">// 12.50PLN -&gt; 1250</span>
-        p24_country: CountryCode.Poland, <span class="hljs-comment">// set country codes</span>
-        p24_currency: CurrencyType.PLN, <span class="hljs-comment">// set currency</span>
-        p24_description: <span class="hljs-string">'a fancy item'</span>, <span class="hljs-comment">// set description</span>
-        p24_email: <span class="hljs-string">'jhondoe@gmail.com'</span>, <span class="hljs-comment">// customer's email</span>
-        p24_session_id: <span class="hljs-string">'kdsfksfklfklfffl'</span>, <span class="hljs-comment">// a unique id from merchant's system</span>
-        p24_url_return: <span class="hljs-string">'http://myawesomeapp.com/payment_success?order=abc'</span>, <span class="hljs-comment">// return user to following url after a valid transaction</span>
-        p24_url_status: <span class="hljs-string">'http://myawesomeapp.com/p24callback'</span>
-    };
+    p24_amount: <span class="hljs-number">1250</span>, <span class="hljs-comment">// 12.50PLN -&gt; 1250</span>
+    p24_country: CountryCode.Poland, <span class="hljs-comment">// set country codes</span>
+    p24_currency: CurrencyType.PLN, <span class="hljs-comment">// set currency</span>
+    p24_description: <span class="hljs-string">'a fancy item'</span>, <span class="hljs-comment">// set description</span>
+    p24_email: <span class="hljs-string">'jhondoe@gmail.com'</span>, <span class="hljs-comment">// customer's email</span>
+    p24_session_id: <span class="hljs-string">'122999333939393939393'</span>, <span class="hljs-comment">// a unique id from merchant's system</span>
+    p24_url_return: <span class="hljs-string">'http://myawesomeapp.com/payment_success?order=abc'</span>, <span class="hljs-comment">// return user to following url after a valid transaction</span>
+    p24_url_status: <span class="hljs-string">'http://myawesomeapp.com/p24callback'</span>
+};
 
 <span class="hljs-comment">// prepare shopping details(optional)</span>
 <span class="hljs-keyword">const</span> shoppingDetails: ShoppingDetail[] = [
-        { name: <span class="hljs-string">'a book'</span>, price: <span class="hljs-number">13</span>, quantity: <span class="hljs-number">4</span> },
-        { name: <span class="hljs-string">'a pen'</span>, price: <span class="hljs-number">13</span>, quantity: <span class="hljs-number">1</span> },
-        ...
-    ];
+    { name: <span class="hljs-string">'a book'</span>, price: <span class="hljs-number">13</span>, quantity: <span class="hljs-number">4</span> },
+    { name: <span class="hljs-string">'a pen'</span>, price: <span class="hljs-number">13</span>, quantity: <span class="hljs-number">1</span> }
+];
 
 <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> p24.getPaymentLink(<span class="hljs-keyword">new</span> Payment(paymentParam, shoppingDetails));
 <span class="hljs-built_in">console</span>.log(result) <span class="hljs-comment">// prints a valid url to pay the payment or throws an error</span></code></pre>
 				<a href="#verifies-a-payment" id="verifies-a-payment" style="color: inherit; text-decoration: none;">
 					<h3>Verifies a payment</h3>
 				</a>
-				<p>Verifies a payment on p24 system. Once a sucessfull payment happen, <code>http://myawesomeapp.com/p24callback</code> is triggered with a <code>POST</code> request containing all the details for verify a transaction. When this happens the transaction becomes valid. <code>TransactionVerification</code> model is used to verify a transaction.</p>
+				<p>Verifies a payment on p24 system. Once a sucessfull payment happen, <code>http://myawesomeapp.com/p24callback</code> is triggered with a <code>POST</code> request containing all the details to verify a transaction. <strong>When this happens the transaction becomes valid</strong>. <code>TransactionVerification</code> is used to verify a transaction.</p>
 				<pre><code class="language-typescript"><span class="hljs-comment">// extract all information from callback request</span>
 <span class="hljs-keyword">const</span> {
-    p24_merchant_id,
-    p24_pos_id,
     p24_session_id,
     p24_amount,
     p24_currency,
@@ -135,13 +143,10 @@
 } = req.body;
 
 <span class="hljs-keyword">const</span> verification: TransactionVerification = {
-    p24_merchant_id: p24_merchant_id,
-    p24_pos_id: p24_pos_id,
     p24_session_id: p24_session_id,
     p24_amount: p24_amount,
     p24_currency: p24_currency,
-    p24_order_id: p24_order_id,
-    p24_sign: p24_sign
+    p24_order_id: p24_order_id
 }
 
 <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> p24.verifyTransaction(verification)
@@ -152,7 +157,7 @@
 				</a>
 				<p>Library provides method to validate IP addresses with P24 backends</p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> valid = Przelewy24.isIpValid(<span class="hljs-string">'127.0.0.1'</span>)
-<span class="hljs-built_in">console</span>.log(valid)</code></pre>
+<span class="hljs-built_in">console</span>.log(valid) <span class="hljs-comment">// output false if IP is not from p24</span></code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -162,43 +167,43 @@
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_baseparameters_.html">&quot;<wbr>Base<wbr>Parameters&quot;</a>
+						<a href="modules/_enums_characterencoding_.html">&quot;enums/<wbr>Character<wbr>Encoding&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_characterencoding_.html">&quot;<wbr>Character<wbr>Encoding&quot;</a>
+						<a href="modules/_enums_country_.html">&quot;enums/<wbr>Country&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_countrycode_.html">&quot;<wbr>Country<wbr>Code&quot;</a>
+						<a href="modules/_enums_currency_.html">&quot;enums/<wbr>Currency&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_currencytype_.html">&quot;<wbr>Currency<wbr>Type&quot;</a>
+						<a href="modules/_enums_language_.html">&quot;enums/<wbr>Language&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_language_.html">&quot;<wbr>Language&quot;</a>
+						<a href="modules/_errors_p24error_.html">&quot;errors/<wbr>P24<wbr>Error&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_p24error_.html">&quot;<wbr>P24<wbr>Error&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_p24validationerror_.html">&quot;<wbr>P24<wbr>Validation<wbr>Error&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_payment_.html">&quot;<wbr>Payment&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_paymentoptions_.html">&quot;<wbr>Payment<wbr>Options&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_przelewy24_.html">&quot;<wbr>Przelewy24&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_shoppingdetail_.html">&quot;<wbr>Shopping<wbr>Detail&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_transactionverification_.html">&quot;<wbr>Transaction<wbr>Verification&quot;</a>
+						<a href="modules/_errors_p24validationerror_.html">&quot;errors/<wbr>P24<wbr>Validation<wbr>Error&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_p24_baseparameters_.html">&quot;p24/<wbr>Base<wbr>Parameters&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_p24_przelewy24_.html">&quot;p24/<wbr>Przelewy24&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_payments_payment_.html">&quot;payments/<wbr>Payment&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_payments_paymentoptions_.html">&quot;payments/<wbr>Payment<wbr>Options&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_payments_shoppingdetail_.html">&quot;payments/<wbr>Shopping<wbr>Detail&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_payments_transactionverification_.html">&quot;payments/<wbr>Transaction<wbr>Verification&quot;</a>
 					</li>
 				</ul>
 			</nav>
