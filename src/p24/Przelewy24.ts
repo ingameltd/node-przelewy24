@@ -137,13 +137,18 @@ export class Przelewy24 {
      */
     public async verifyTransaction (verification: TransactionVerification) {
         const crcData = `${verification.p24_session_id}|${verification.p24_order_id}|${verification.p24_amount}|${verification.p24_currency}|${this.salt}`
+
         const hash = crypto.createHash('md5')
             .update(crcData)
             .digest('hex');
+
+        if (verification.p24_sign !== hash) {
+            throw new P24Error('INVALID_SIGN', `Received sign is invalid`);
+        }
+
         const data = {
             p24_merchant_id: this.merchantId,
             p24_pos_id: this.posId,
-            p24_sign: hash,
             ...verification,
         }
         const result = await this.client.post(trnVerify, querystring.stringify(data));

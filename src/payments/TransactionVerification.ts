@@ -63,4 +63,12 @@ export interface TransactionVerification {
      * @memberof TransactionVerification
      */
     p24_order_id: number;
+
+    /**
+     * Sign for transaction data
+     *
+     * @type {string}
+     * @memberof TransactionVerification
+     */
+    p24_sign: string;
 }
