@@ -85,14 +85,16 @@ const {
     p24_session_id,
     p24_amount,
     p24_currency,
-    p24_order_id
+    p24_order_id,
+    p24_sign
 } = req.body;
 
 const verification: TransactionVerification = {
     p24_session_id: p24_session_id,
     p24_amount: p24_amount,
     p24_currency: p24_currency,
-    p24_order_id: p24_order_id
+    p24_order_id: p24_order_id,
+    p24_sign: p24_sign
 }
 
 const result = await p24.verifyTransaction(verification)
