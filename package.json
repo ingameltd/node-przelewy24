@@ -1,6 +1,6 @@
 {
   "name": "@ingameltd/node-przelewy24",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A simple library for connecting przelewy24 service",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -37,6 +37,6 @@
     "typescript": "^3.7.4"
   },
   "dependencies": {
-    "axios": "^0.19.0"
+    "axios": "^0.21.1"
   }
 }
