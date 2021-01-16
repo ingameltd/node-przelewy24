@@ -35,12 +35,14 @@ import { TransactionVerification } from '../payments/TransactionVerification';
 
 export const ApiVersion = '3.2';
 
-const Przelewy24Base = 'https://secure.przelewy24.pl';
-const SandboxUrl = 'https://sandbox.przelewy24.pl';
+const Przelewy24Base = 'https://secure.przelewy24.pl/api/v1';
+const SandboxUrl = 'https://sandbox.przelewy24.pl/api/v1';
+
 const testConnection = '/testConnection';
 const trnRegister = '/trnRegister';
 const trnRequest = '/trnRequest';
 const trnVerify = '/trnVerify';
+
 const validIps = [
     '91.216.191.181',
     '91.216.191.182',
@@ -78,7 +80,7 @@ export class Przelewy24 {
         if (this.posId === 0)
             this.posId = this.merchantId;
 
-        this.baseUrl = testMode ? SandboxUrl : Przelewy24Base;
+        this.baseUrl = !testMode ? Przelewy24Base : SandboxUrl;
 
         this.client = Axios.create({ baseURL: this.baseUrl });
         this.baseParams = {
