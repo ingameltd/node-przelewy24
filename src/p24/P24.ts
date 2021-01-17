@@ -23,30 +23,31 @@
  *
  */
 
-import { AxiosInstance } from 'axios';
-import Axios from 'axios';
-import crypto from 'crypto';
-import querystring from 'querystring';
-
+import Axios, { AxiosInstance } from 'axios';
 import { P24Error } from '../errors/P24Error';
 import { P24Options } from './P24Options';
 import { validIps } from './ips';
 import { SuccessResponse } from '../responses/SuccessResponse';
 import { ErrorResponse } from '../responses/ErrorResponse';
+import { Order } from '../../dist/orders/Order';
+import { BaseParameters } from './BaseParameters';
+import { calculateSHA384 } from '../utils/hash';
+import { OrderCreaetedData } from '../orders/OrderCreaetedData';
+import { Transaction } from '../orders/Transaction';
+import { EndpointTestAccess, EndpointTransactionRegister, EndpointTransactionRequest } from './endpoints';
 
-export const ApiVersion = '3.2';
 
 const ProductionUrl = 'https://secure.przelewy24.pl';
 const SandboxUrl = 'https://sandbox.przelewy24.pl';
 
 
 /**
- * Create Przelewy24 instance
+ * Represents a P24 payment system
  *
  * @export
- * @class Przelewy24
+ * @class P24
  */
-export class Przelewy24 {
+export class P24 {
     private merchantId: number;
     private posId: number;
     private crcKey: string;
@@ -54,6 +55,7 @@ export class Przelewy24 {
     private client: AxiosInstance;
     private baseUrl: string;
     private options: P24Options;
+    private baseParameters: BaseParameters;
 
     /**
     * Creates an instance of Przelewy24.
@@ -62,7 +64,7 @@ export class Przelewy24 {
     * @param {string} apiKey API Key from P24 panel(Klucz do raportów)
     * @param {string} crcKey CRC key from P24 panel
     * @param {P24Options} [options={ sandbox: false }] - additional options
-    * @memberof Przelewy24
+    * @memberof P24
     */
     constructor(
         merchantId: number,
@@ -81,6 +83,11 @@ export class Przelewy24 {
 
         this.baseUrl = !this.options.sandbox ? ProductionUrl : SandboxUrl;
 
+        this.baseParameters = {
+            merchantId: this.merchantId,
+            posId: this.posId
+        };
+
         this.client = Axios.create({
             baseURL: `${this.baseUrl}/api/v1`,
             auth: {
@@ -95,11 +102,11 @@ export class Przelewy24 {
      *
      * @returns {Promise<SuccessResponse<boolean>>}
      * @throws {P24Error}
-     * @memberof Przelewy24
+     * @memberof P24
      */
     public async testAccess (): Promise<SuccessResponse<boolean>> {
         try {
-            const { data } = await this.client.get('/testAccess')
+            const { data } = await this.client.get(EndpointTestAccess)
             return <SuccessResponse<boolean>>data
         } catch (error) {
             if (error.response && error.response.data) {
@@ -110,77 +117,52 @@ export class Przelewy24 {
         }
     }
 
-    // /**
-    //  * Tests the connection to p24
-    //  *
-    //  * @returns {boolean} - returns true on success
-    //  * @memberof Przelewy24
-    //  */
-    // public async testConnection (): Promise<boolean> {
-    //     const hash = crypto.createHash('md5')
-    //         .update(`${this.posId}|${this.salt}`)
-    //         .digest('hex');
-    //     const data = {
-    //         p24_merchant_id: this.merchantId,
-    //         p24_pos_id: this.posId,
-    //         p24_sign: hash
-    //     };
-    //     const result = await this.client.post(testConnection, querystring.stringify(data));
-    //     const responseData = querystring.decode(result.data);
-    //     if (responseData['error'] !== '0') {
-    //         throw new P24Error(`${responseData['error']}`, `${responseData['errorMessage']}`);
-    //     }
-    //     return true;
-    // }
+    /**
+     * Creates a transaction
+     *
+     * @param {Order} order
+     * @returns {Promise<Transaction>}
+     * @memberof P24
+     */
+    public async createTransaction (order: Order): Promise<Transaction> {
+        try {
+            const hashData = {
+                sessionId: order.sessionId,
+                merchantId: this.merchantId,
+                amount: order.amount,
+                currency: order.currency,
+                crc: this.crcKey
+            }
 
-    // /**
-    //  * Get a payment link
-    //  *
-    //  * @param {Payment} payment - Payment object
-    //  * @returns {string} url to do the payment
-    //  * @memberof Przelewy24
-    //  */
-    // public async getPaymentLink (payment: Payment): Promise<string> {
-    //     const data = payment.build(this.baseParams, this.salt);
-    //     const result = await this.client.post(trnRegister, querystring.stringify(data));
-    //     const responseData = querystring.decode(result.data);
-    //     if (responseData['error'] === '0') {
-    //         return `${this.baseUrl}${trnRequest}/${responseData['token']}`
-    //     }
+            const sign = calculateSHA384(JSON.stringify(hashData))
 
-    //     throw new P24Error(`${responseData['error']}`, `${responseData['errorMessage']}`)
-    // }
+            const orderData = {
+                ...this.baseParameters,
+                ...order,
+                sign,
+            }
 
-    // /**
-    //  * Verifies a transaction
-    //  *
-    //  * @param {TransactionVerification} verification
-    //  * @memberof Przelewy24
-    //  */
-    // public async verifyTransaction (verification: TransactionVerification) {
-    //     const crcData = `${verification.p24_session_id}|${verification.p24_order_id}|${verification.p24_amount}|${verification.p24_currency}|${this.salt}`
+            const { data } = await this.client.post(EndpointTransactionRegister, orderData)
+            const response = <SuccessResponse<OrderCreaetedData>>data
+            const transaction: Transaction = {
+                token: response.data.token,
+                link: `${this.baseUrl}${EndpointTransactionRequest}/${response.data.token}`
+            }
 
-    //     const hash = crypto.createHash('md5')
-    //         .update(crcData)
-    //         .digest('hex');
+            return transaction
+        } catch (error) {
+            if (error.response && error.response.data) {
+                const resp = <ErrorResponse>error.response.data
+                throw new P24Error(resp.error, resp.code)
+            }
+            throw new P24Error(`Unknown Error ${error}`, -1)
+        }
+    }
 
-    //     if (verification.p24_sign !== hash) {
-    //         throw new P24Error('INVALID_SIGN', `Received sign is invalid`);
-    //     }
 
-    //     const data = {
-    //         p24_merchant_id: this.merchantId,
-    //         p24_pos_id: this.posId,
-    //         ...verification,
-    //     }
-    //     const result = await this.client.post(trnVerify, querystring.stringify(data));
-    //     const responseData = querystring.decode(result.data);
-    //     if (responseData['error'] === '0') {
-    //         return true
-    //     }
+    public async verifyTransaction (params: type) {
 
-    //     throw new P24Error(`${responseData['error']}`, `${responseData['errorMessage']}`)
-    // }
+    }
 
     /**
      * Validates IP with P24 backends

@@ -1,4 +1,3 @@
-export const testConnection: string = '/testConnection';
-export const trnRegister: string = '/trnRegister';
-export const trnRequest: string = '/trnRequest';
-export const trnVerify: string = '/trnVerify';
+export const EndpointTestAccess: string = '/testAccess'
+export const EndpointTransactionRegister: string = '/transaction/register'
+export const EndpointTransactionRequest: string = '/trnRequest'
