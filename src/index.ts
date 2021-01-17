@@ -23,11 +23,10 @@
  *
  */
 
-export * from './p24/BaseParameters'
-export * from './enums/Encoding'
-export * from './enums/Country'
-export * from './enums/Currency'
-export * from './enums/Language'
-export * from './errors/P24Error'
-export * from './errors/P24ValidationError'
-export * from './p24/P24'
+export * from './p24'
+export * from './enums'
+export * from './errors'
+export * from './orders'
+export * from './refund'
+export * from './responses'
+export * from './verify'

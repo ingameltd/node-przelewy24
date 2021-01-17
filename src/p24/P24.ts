@@ -24,32 +24,39 @@
  */
 
 import Axios, { AxiosInstance } from 'axios';
-import { P24Error } from '../errors/P24Error';
+import { P24Error } from '../errors';
 import { P24Options } from './P24Options';
 import { validIps } from './ips';
-import { SuccessResponse } from '../responses/SuccessResponse';
-import { ErrorResponse } from '../responses/ErrorResponse';
-import { Order } from '../orders/Order';
+import {
+    SuccessResponse,
+    ErrorResponse
+} from '../responses';
 import { BaseParameters } from './BaseParameters';
 import { calculateSHA384 } from '../utils/hash';
-import { OrderCreatedData } from '../orders/OrderCreatedData';
-import { Transaction } from '../orders/Transaction';
 import {
+    Order,
+    OrderCreatedData,
+    Transaction
+} from '../orders';
+import {
+    ProductionUrl,
+    SandboxUrl,
     EndpointTestAccess,
     EndpointTransactionRegister,
     EndpointTransactionRequest,
-    EndpointTransactionVerify
+    EndpointTransactionVerify,
+    EndpointRefund
 } from './endpoints';
-import { Verification } from '../verify/Verification';
-import { VerificationData } from '../verify/VerificationData';
-import { NotificationRequest } from '../verify/NotificationRequest';
-import { RefundRequest } from '../refund/RefundRequest';
-import { EndpointRefund } from './endpoints';
-import { RefundResult } from '../refund/RefundResult';
+import {
+    Verification,
+    NotificationRequest,
+    VerificationData
+} from '../verify';
+import {
+    RefundRequest,
+    RefundResult
+} from '../refund';
 
-
-const ProductionUrl = 'https://secure.przelewy24.pl';
-const SandboxUrl = 'https://sandbox.przelewy24.pl';
 
 
 /**
