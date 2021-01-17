@@ -26,7 +26,7 @@
 import { Currency } from "../enums/Currency";
 import { Country } from "../enums/Country";
 import { Language } from "../enums/Language";
-import { CharacterEncoding } from "../enums/CharacterEncoding";
+import { CharacterEncoding } from "../enums/Encoding";
 /**
  * Payment Options
  *

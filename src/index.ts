@@ -24,7 +24,7 @@
  */
 
 export * from './p24/BaseParameters'
-export * from './enums/CharacterEncoding'
+export * from './enums/Encoding'
 export * from './enums/Country'
 export * from './enums/Currency'
 export * from './enums/Language'
@@ -32,6 +32,6 @@ export * from './errors/P24Error'
 export * from './errors/P24ValidationError'
 export * from './payments/Payment'
 export * from './payments/PaymentOptions'
-export * from './p24/Przelewy24'
+export * from './p24/P24'
 export * from './payments/ShoppingDetail'
 export * from './payments/TransactionVerification'
