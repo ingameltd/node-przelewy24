@@ -32,9 +32,16 @@ import { ErrorResponse } from '../responses/ErrorResponse';
 import { Order } from '../orders/Order';
 import { BaseParameters } from './BaseParameters';
 import { calculateSHA384 } from '../utils/hash';
-import { OrderCreaetedData } from '../orders/OrderCreaetedData';
+import { OrderCreatedData } from '../orders/OrderCreatedData';
 import { Transaction } from '../orders/Transaction';
-import { EndpointTestAccess, EndpointTransactionRegister, EndpointTransactionRequest } from './endpoints';
+import {
+    EndpointTestAccess,
+    EndpointTransactionRegister,
+    EndpointTransactionRequest,
+    EndpointTransactionVerify
+} from './endpoints';
+import { Verification } from '../verify/Verification';
+import { VerificationData } from '../verify/VerificationData';
 
 
 const ProductionUrl = 'https://secure.przelewy24.pl';
@@ -120,8 +127,9 @@ export class P24 {
     /**
      * Creates a transaction
      *
-     * @param {Order} order
+     * @param {Order} order - order to be created
      * @returns {Promise<Transaction>}
+     * @throws {P24Error}
      * @memberof P24
      */
     public async createTransaction (order: Order): Promise<Transaction> {
@@ -143,7 +151,7 @@ export class P24 {
             }
 
             const { data } = await this.client.post(EndpointTransactionRegister, orderData)
-            const response = <SuccessResponse<OrderCreaetedData>>data
+            const response = <SuccessResponse<OrderCreatedData>>data
             const transaction: Transaction = {
                 token: response.data.token,
                 link: `${this.baseUrl}${EndpointTransactionRequest}/${response.data.token}`
@@ -160,9 +168,45 @@ export class P24 {
     }
 
 
-    // public async verifyTransaction (params: type) {
+    /**
+     * Verify transaction
+     *
+     * @param {Verification} verification - verification request
+     * @returns {Promise<boolean>}
+     * @throws {P24Error}
+     * @memberof P24
+     */
+    public async verifyTransaction (verification: Verification): Promise<boolean> {
+        try {
+            const hashData = {
+                sessionId: verification.sessionId,
+                orderId: verification.orderId,
+                amount: verification.amount,
+                currency: verification.currency,
+                crc: this.crcKey
+            }
 
-    // }
+            const sign = calculateSHA384(JSON.stringify(hashData))
+
+            const verificationData = {
+                ...this.baseParameters,
+                ...verification,
+                sign
+            }
+
+            const { data } = await this.client.put(EndpointTransactionVerify, verificationData)
+            const result = <SuccessResponse<VerificationData>>data
+            const { status } = result.data
+
+            return status === 'success'
+        } catch (error) {
+            if (error.response && error.response.data) {
+                const resp = <ErrorResponse>error.response.data
+                throw new P24Error(resp.error, resp.code)
+            }
+            throw new P24Error(`Unknown Error ${error}`, -1)
+        }
+    }
 
     /**
      * Validates IP with P24 backends

@@ -1,9 +1,9 @@
-export interface OrderCreaetedData {
+export interface OrderCreatedData {
     /**
      * Token to do a payment redirect
      *
      * @type {string}
-     * @memberof OrderCreaetedData
+     * @memberof OrderCreatedData
      */
     token: string;
 }
