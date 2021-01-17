@@ -31,8 +31,8 @@
  * @extends {Error}
  */
 export class P24Error extends Error {
-    constructor(error: string, code: Number) {
-        super(`error = ${error}, code = ${code}`); // 'Error' breaks prototype chain here
+    constructor(error: string, code: Number, extra?: unknown) {
+        super(`error = ${error}, code = ${code}, extra = ${extra}`); // 'Error' breaks prototype chain here
         Object.setPrototypeOf(this, new.target.prototype);
     }
 }

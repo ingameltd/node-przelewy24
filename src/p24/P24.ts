@@ -43,6 +43,9 @@ import {
 import { Verification } from '../verify/Verification';
 import { VerificationData } from '../verify/VerificationData';
 import { NotificationRequest } from '../verify/NotificationRequest';
+import { RefundRequest } from '../refund/RefundRequest';
+import { EndpointRefund } from './endpoints';
+import { RefundResult } from '../refund/RefundResult';
 
 
 const ProductionUrl = 'https://secure.przelewy24.pl';
@@ -224,6 +227,30 @@ export class P24 {
         }
         const sign = calculateSHA384(JSON.stringify(notificationHash))
         return sign === notificationRequest.sign
+    }
+
+    /**
+     * Handle refund
+     *
+     * @param {RefundRequest} refundRequest
+     * @returns {Promise<SuccessResponse<RefundResult[]>>}
+     * @memberof P24
+     */
+    public async refund (refundRequest: RefundRequest): Promise<SuccessResponse<RefundResult[]>> {
+        try {
+            const { data } = await this.client.post(EndpointRefund, refundRequest)
+            return <SuccessResponse<RefundResult[]>>data
+        } catch (error) {
+            if (error.response && error.response.data) {
+                if (error.response.data.code === 409) {
+                    const resp = <ErrorResponse<RefundResult[]>>error.response.data
+                    throw new P24Error('Refund Conflict', resp.code, resp.error)
+                }
+                const resp = <ErrorResponse<string>>error.response.data
+                throw new P24Error(resp.error, resp.code)
+            }
+            throw new P24Error(`Unknown Error ${error}`, -1)
+        }
     }
 
     /**

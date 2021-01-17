@@ -16,10 +16,10 @@ export interface Refund {
     /**
      * Transaction session ID from the Partner’s system
      *
-     * @type {number}
+     * @type {string}
      * @memberof Refund
      */
-    sessionId: number,
+    sessionId: string,
 
     /**
      * Amount of refund
