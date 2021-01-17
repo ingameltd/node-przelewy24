@@ -93,7 +93,7 @@ transaction order. You need to **verify** this Notification request before actua
 ```typescript
 const verify: NotificationRequest = req.body
 const res = p24.verifyNotification(verify)
-console.log(res) // res is true when the Notification is valid
+console.log(res) // true when the Notification is valid
 ```
 
 ### Verifies a transaction with P24
