@@ -118,14 +118,15 @@ export class P24 {
     /**
      * Test access to the service
      *
-     * @returns {Promise<SuccessResponse<boolean>>}
+     * @returns {Promise<boolean>}
      * @throws {P24Error}
      * @memberof P24
      */
-    public async testAccess (): Promise<SuccessResponse<boolean>> {
+    public async testAccess (): Promise<boolean> {
         try {
             const { data } = await this.client.get(EndpointTestAccess)
-            return <SuccessResponse<boolean>>data
+            const res = <SuccessResponse<boolean>>data
+            return res.data === true
         } catch (error) {
             if (error.response && error.response.data) {
                 const resp = <ErrorResponse<string>>error.response.data
@@ -207,9 +208,7 @@ export class P24 {
 
             const { data } = await this.client.put(EndpointTransactionVerify, verificationData)
             const result = <SuccessResponse<VerificationData>>data
-            const { status } = result.data
-
-            return status === 'success'
+            return result.data.status === 'success'
         } catch (error) {
             if (error.response && error.response.data) {
                 const resp = <ErrorResponse<string>>error.response.data

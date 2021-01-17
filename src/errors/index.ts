@@ -1,1 +1,1 @@
-export * from './P24Error'
+export * from './P24Error';

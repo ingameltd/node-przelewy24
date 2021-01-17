@@ -1,2 +1,2 @@
-export * from './ErrorResponse'
-export * from './SuccessResponse'
+export * from './ErrorResponse';
+export * from './SuccessResponse';

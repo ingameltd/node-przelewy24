@@ -1,3 +1,3 @@
-export * from './NotificationRequest'
-export * from './Verification'
-export * from './VerificationData'
+export * from './NotificationRequest';
+export * from './Verification';
+export * from './VerificationData';
