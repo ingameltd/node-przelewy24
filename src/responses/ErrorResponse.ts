@@ -1,11 +1,11 @@
-export interface ErrorResponse {
+export interface ErrorResponse<T> {
     /**
-     * Error string
+     * Error
      *
-     * @type {string}
+     * @type {T}
      * @memberof ErrorResponse
      */
-    error: string,
+    error: T,
 
     /**
      * Error code

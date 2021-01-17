@@ -118,7 +118,7 @@ export class P24 {
             return <SuccessResponse<boolean>>data
         } catch (error) {
             if (error.response && error.response.data) {
-                const resp = <ErrorResponse>error.response.data
+                const resp = <ErrorResponse<string>>error.response.data
                 throw new P24Error(resp.error, resp.code)
             }
             throw new P24Error(`Unknown Error ${error}`, -1)
@@ -161,7 +161,7 @@ export class P24 {
             return transaction
         } catch (error) {
             if (error.response && error.response.data) {
-                const resp = <ErrorResponse>error.response.data
+                const resp = <ErrorResponse<string>>error.response.data
                 throw new P24Error(resp.error, resp.code)
             }
             throw new P24Error(`Unknown Error ${error}`, -1)
@@ -202,7 +202,7 @@ export class P24 {
             return status === 'success'
         } catch (error) {
             if (error.response && error.response.data) {
-                const resp = <ErrorResponse>error.response.data
+                const resp = <ErrorResponse<string>>error.response.data
                 throw new P24Error(resp.error, resp.code)
             }
             throw new P24Error(`Unknown Error ${error}`, -1)
