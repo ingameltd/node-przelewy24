@@ -23,52 +23,13 @@
  *
  */
 
-import { Currency } from "../enums/Currency";
-
 /**
- * TransactionVerification
+ * Character Encoding
  *
- * @export
- * @interface TransactionVerification
+ * @enum {number}
  */
-export interface TransactionVerification {
-    /**
-     * A unique ID of the transaction from Merchant’s system
-     *
-     * @type {string}
-     * @memberof TransactionVerification
-     */
-    p24_session_id: string;
-
-    /**
-     * Transaction amount from Merchant’s system
-     *
-     * @type {number}
-     * @memberof TransactionVerification
-     */
-    p24_amount: number;
-
-    /**
-     * PLN, EUR, GBP, CZK
-     *
-     * @type {string}
-     * @memberof TransactionVerification
-     */
-    p24_currency: string;
-
-    /**
-     * Transaction number received from P24
-     *
-     * @type {number}
-     * @memberof TransactionVerification
-     */
-    p24_order_id: number;
-
-    /**
-     * Sign for transaction data
-     *
-     * @type {string}
-     * @memberof TransactionVerification
-     */
-    p24_sign: string;
+export enum Encoding {
+    ISO8859 = 'ISO-8859-2',
+    UTF8 = 'UTF-8',
+    WINDOWS1250 = 'Windows-1250'
 }

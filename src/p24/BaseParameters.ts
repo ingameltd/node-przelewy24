@@ -35,19 +35,12 @@ export interface BaseParameters {
      * @type {number}
      * @memberof BaseParameters
      */
-    p24_merchant_id: number;
+    merchantId: number;
     /**
      * Shop ID (default Merchant ID)
      *
      * @type {number}
      * @memberof BaseParameters
      */
-    p24_pos_id: number;
-    /**
-     * API VERSION default to 3.2
-     *
-     * @type {string}
-     * @memberof BaseParameters
-     */
-    p24_api_version: string;
+    posId: number;
 }
