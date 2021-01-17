@@ -42,6 +42,7 @@ import {
 } from './endpoints';
 import { Verification } from '../verify/Verification';
 import { VerificationData } from '../verify/VerificationData';
+import { NotificationRequest } from '../verify/NotificationRequest';
 
 
 const ProductionUrl = 'https://secure.przelewy24.pl';
@@ -206,6 +207,23 @@ export class P24 {
             }
             throw new P24Error(`Unknown Error ${error}`, -1)
         }
+    }
+
+    /**
+     * Verify notification transaction with our CRC Key
+     *
+     * @param {NotificationRequest} notificationRequest
+     * @returns {boolean}
+     * @memberof P24
+     */
+    public verifyNotification (notificationRequest: NotificationRequest): boolean {
+        const notificationHash = {
+            ...notificationRequest,
+            sign: undefined,
+            crc: this.crcKey
+        }
+        const sign = calculateSHA384(JSON.stringify(notificationHash))
+        return sign === notificationRequest.sign
     }
 
     /**

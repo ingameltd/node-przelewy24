@@ -26,10 +26,10 @@ export interface Verification {
     /**
      * Currency
      *
-     * @type {Currency}
+     * @type {string}
      * @memberof TransactionVerification
      */
-    currency: Currency;
+    currency: string;
 
     /**
      * Id of an order
