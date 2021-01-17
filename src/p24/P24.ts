@@ -29,7 +29,7 @@ import { P24Options } from './P24Options';
 import { validIps } from './ips';
 import { SuccessResponse } from '../responses/SuccessResponse';
 import { ErrorResponse } from '../responses/ErrorResponse';
-import { Order } from '../../dist/orders/Order';
+import { Order } from '../orders/Order';
 import { BaseParameters } from './BaseParameters';
 import { calculateSHA384 } from '../utils/hash';
 import { OrderCreaetedData } from '../orders/OrderCreaetedData';
@@ -160,9 +160,9 @@ export class P24 {
     }
 
 
-    public async verifyTransaction (params: type) {
+    // public async verifyTransaction (params: type) {
 
-    }
+    // }
 
     /**
      * Validates IP with P24 backends
