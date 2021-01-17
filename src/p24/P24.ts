@@ -28,11 +28,11 @@ import Axios from 'axios';
 import crypto from 'crypto';
 import querystring from 'querystring';
 
-import { Payment } from "../payments/Payment";
 import { P24Error } from '../errors/P24Error';
-import { TransactionVerification } from '../payments/TransactionVerification';
 import { P24Options } from './P24Options';
 import { validIps } from './ips';
+import { SuccessResponse } from '../responses/SuccessResponse';
+import { ErrorResponse } from '../responses/ErrorResponse';
 
 export const ApiVersion = '3.2';
 
@@ -88,6 +88,26 @@ export class Przelewy24 {
                 password: this.apiKey
             }
         });
+    }
+
+    /**
+     * Test access to the service
+     *
+     * @returns {Promise<SuccessResponse<boolean>>}
+     * @throws {P24Error}
+     * @memberof Przelewy24
+     */
+    public async testAccess (): Promise<SuccessResponse<boolean>> {
+        try {
+            const { data } = await this.client.get('/testAccess')
+            return <SuccessResponse<boolean>>data
+        } catch (error) {
+            if (error.response && error.response.data) {
+                const resp = <ErrorResponse>error.response.data
+                throw new P24Error(resp.error, resp.code)
+            }
+            throw new P24Error(`Unknown Error ${error}`, -1)
+        }
     }
 
     // /**

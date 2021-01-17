@@ -98,8 +98,8 @@ export class Payment {
     public build (baseParams: BaseParameters, salt: string) {
         this.validatePayment(); // fail on build
         const shoppingDetails = this.prepareShoppingDetails();
-        const crcStr = `${this.paymentOptions.p24_session_id}|${baseParams.p24_merchant_id}|${this.paymentOptions.p24_amount}|${this.paymentOptions.p24_currency}|${salt}`;
-        const crc = crypto.createHash('md5').update(crcStr).digest('hex');
+        const crcStr = `${this.paymentOptions.p24_session_id}|${baseParams}|${this.paymentOptions.p24_amount}|${this.paymentOptions.p24_currency}|${salt}`;
+        const crc = crypto.createHash('').update(crcStr).digest('hex');
         return {
             ...baseParams,
             ...this.paymentOptions,

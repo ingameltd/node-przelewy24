@@ -26,7 +26,7 @@
 import { Currency } from "../enums/Currency";
 import { Country } from "../enums/Country";
 import { Language } from "../enums/Language";
-import { CharacterEncoding } from "../enums/Encoding";
+import { Encoding } from "../enums/Encoding";
 /**
  * Payment Options
  *
@@ -213,5 +213,5 @@ export interface PaymentOptions {
      * @type {CharacterEncoding}
      * @memberof PaymentOptions
      */
-    p24_encoding?: CharacterEncoding;
+    p24_encoding?: Encoding;
 }
