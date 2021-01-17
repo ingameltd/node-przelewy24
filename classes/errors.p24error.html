@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>P24ValidationError | @ingameltd/node-przelewy24</title>
+	<title>P24Error | @ingameltd/node-przelewy24</title>
 	<meta name="description" content="Documentation for @ingameltd/node-przelewy24">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,13 +55,13 @@
 					<a href="../modules.html">@ingameltd/node-przelewy24</a>
 				</li>
 				<li>
-					<a href="../modules/errors_p24validationerror.html">errors/P24ValidationError</a>
+					<a href="../modules/errors.html">errors</a>
 				</li>
 				<li>
-					<a href="errors_p24validationerror.p24validationerror.html">P24ValidationError</a>
+					<a href="errors.p24error.html">P24Error</a>
 				</li>
 			</ul>
-			<h1>Class P24ValidationError</h1>
+			<h1>Class P24Error</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +71,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Validation error</p>
+						<p>Error from Przelewy24</p>
 					</div>
 					<dl class="tsd-comment-tags">
 						<dt>export</dt>
@@ -86,7 +86,7 @@
 						<span class="tsd-signature-type">Error</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">P24ValidationError</span>
+								<span class="target">P24Error</span>
 							</li>
 						</ul>
 					</li>
@@ -99,23 +99,23 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="errors_p24validationerror.p24validationerror.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="errors.p24error.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="errors_p24validationerror.p24validationerror.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="errors_p24validationerror.p24validationerror.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="errors_p24validationerror.p24validationerror.html#preparestacktrace" class="tsd-kind-icon">prepare<wbr>Stack<wbr>Trace</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="errors_p24validationerror.p24validationerror.html#stack" class="tsd-kind-icon">stack</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="errors_p24validationerror.p24validationerror.html#stacktracelimit" class="tsd-kind-icon">stack<wbr>Trace<wbr>Limit</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="errors.p24error.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="errors.p24error.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="errors.p24error.html#preparestacktrace" class="tsd-kind-icon">prepare<wbr>Stack<wbr>Trace</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="errors.p24error.html#stack" class="tsd-kind-icon">stack</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="errors.p24error.html#stacktracelimit" class="tsd-kind-icon">stack<wbr>Trace<wbr>Limit</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="errors_p24validationerror.p24validationerror.html#capturestacktrace" class="tsd-kind-icon">capture<wbr>Stack<wbr>Trace</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="errors.p24error.html#capturestacktrace" class="tsd-kind-icon">capture<wbr>Stack<wbr>Trace</a></li>
 							</ul>
 						</section>
 					</div>
@@ -127,22 +127,28 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>P24<wbr>Validation<wbr>Error<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="errors_p24validationerror.p24validationerror.html" class="tsd-signature-type" data-tsd-kind="Class">P24ValidationError</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>P24<wbr>Error<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Number</span>, extra<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="errors_p24error.p24error.html" class="tsd-signature-type" data-tsd-kind="Class">P24Error</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/688369f/src/errors/P24ValidationError.ts#L33">src/errors/P24ValidationError.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/43c59cd/src/errors/P24Error.ts#L33">src/errors/P24Error.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> message: <span class="tsd-signature-type">string</span></h5>
+									<h5>error: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>code: <span class="tsd-signature-type">Number</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> extra: <span class="tsd-signature-type">unknown</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="errors_p24validationerror.p24validationerror.html" class="tsd-signature-type" data-tsd-kind="Class">P24ValidationError</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="errors_p24error.p24error.html" class="tsd-signature-type" data-tsd-kind="Class">P24Error</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -252,7 +258,7 @@
 						<a href="../modules.html">Exports</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/errors_p24validationerror.html">errors/<wbr>P24<wbr>Validation<wbr>Error</a>
+						<a href="../modules/errors.html">errors</a>
 					</li>
 				</ul>
 			</nav>
@@ -261,28 +267,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="errors_p24validationerror.p24validationerror.html" class="tsd-kind-icon">P24<wbr>Validation<wbr>Error</a>
+						<a href="errors.p24error.html" class="tsd-kind-icon">P24<wbr>Error</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="errors_p24validationerror.p24validationerror.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="errors.p24error.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
-								<a href="errors_p24validationerror.p24validationerror.html#message" class="tsd-kind-icon">message</a>
+								<a href="errors.p24error.html#message" class="tsd-kind-icon">message</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
-								<a href="errors_p24validationerror.p24validationerror.html#name" class="tsd-kind-icon">name</a>
+								<a href="errors.p24error.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
-								<a href="errors_p24validationerror.p24validationerror.html#preparestacktrace" class="tsd-kind-icon">prepare<wbr>Stack<wbr>Trace</a>
+								<a href="errors.p24error.html#preparestacktrace" class="tsd-kind-icon">prepare<wbr>Stack<wbr>Trace</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
-								<a href="errors_p24validationerror.p24validationerror.html#stack" class="tsd-kind-icon">stack</a>
+								<a href="errors.p24error.html#stack" class="tsd-kind-icon">stack</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
-								<a href="errors_p24validationerror.p24validationerror.html#stacktracelimit" class="tsd-kind-icon">stack<wbr>Trace<wbr>Limit</a>
+								<a href="errors.p24error.html#stacktracelimit" class="tsd-kind-icon">stack<wbr>Trace<wbr>Limit</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
-								<a href="errors_p24validationerror.p24validationerror.html#capturestacktrace" class="tsd-kind-icon">capture<wbr>Stack<wbr>Trace</a>
+								<a href="errors.p24error.html#capturestacktrace" class="tsd-kind-icon">capture<wbr>Stack<wbr>Trace</a>
 							</li>
 						</ul>
 					</li>

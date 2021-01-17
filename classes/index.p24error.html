@@ -127,13 +127,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>P24<wbr>Error<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="errors_p24error.p24error.html" class="tsd-signature-type" data-tsd-kind="Class">P24Error</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>P24<wbr>Error<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Number</span>, extra<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="errors_p24error.p24error.html" class="tsd-signature-type" data-tsd-kind="Class">P24Error</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/688369f/src/errors/P24Error.ts#L33">src/errors/P24Error.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/43c59cd/src/errors/P24Error.ts#L33">src/errors/P24Error.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -143,6 +143,9 @@
 								</li>
 								<li>
 									<h5>code: <span class="tsd-signature-type">Number</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> extra: <span class="tsd-signature-type">unknown</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="errors_p24error.p24error.html" class="tsd-signature-type" data-tsd-kind="Class">P24Error</a></h4>
@@ -262,6 +265,9 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="../enums/index.channel.html" class="tsd-kind-icon">Channel</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="../enums/index.country.html" class="tsd-kind-icon">Country</a>
 					</li>
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
@@ -272,6 +278,9 @@
 					</li>
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="../enums/index.language.html" class="tsd-kind-icon">Language</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="../enums/index.shippingtype.html" class="tsd-kind-icon">Shipping<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="index.p24.html" class="tsd-kind-icon">P24</a>
@@ -306,11 +315,77 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="index.p24validationerror.html" class="tsd-kind-icon">P24<wbr>Validation<wbr>Error</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/index.additional.html" class="tsd-kind-icon">Additional</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="../interfaces/index.baseparameters.html" class="tsd-kind-icon">Base<wbr>Parameters</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/index.cartitem.html" class="tsd-kind-icon">Cart<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/index.errorresponse.html" class="tsd-kind-icon">Error<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/index.notificationrequest.html" class="tsd-kind-icon">Notification<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/index.order.html" class="tsd-kind-icon">Order</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/index.ordercreateddata.html" class="tsd-kind-icon">Order<wbr>Created<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/index.p24options.html" class="tsd-kind-icon">P24<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/index.refund.html" class="tsd-kind-icon">Refund</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/index.refundrequest.html" class="tsd-kind-icon">Refund<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/index.refundresult.html" class="tsd-kind-icon">Refund<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/index.shipping.html" class="tsd-kind-icon">Shipping</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/index.successresponse.html" class="tsd-kind-icon">Success<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/index.transaction.html" class="tsd-kind-icon">Transaction</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/index.verification.html" class="tsd-kind-icon">Verification</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/index.verificationdata.html" class="tsd-kind-icon">Verification<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/index.html#endpointrefund" class="tsd-kind-icon">Endpoint<wbr>Refund</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/index.html#endpointtestaccess" class="tsd-kind-icon">Endpoint<wbr>Test<wbr>Access</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/index.html#endpointtransactionregister" class="tsd-kind-icon">Endpoint<wbr>Transaction<wbr>Register</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/index.html#endpointtransactionrequest" class="tsd-kind-icon">Endpoint<wbr>Transaction<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/index.html#endpointtransactionverify" class="tsd-kind-icon">Endpoint<wbr>Transaction<wbr>Verify</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/index.html#productionurl" class="tsd-kind-icon">Production<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/index.html#sandboxurl" class="tsd-kind-icon">Sandbox<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/index.html#validips" class="tsd-kind-icon">valid<wbr>Ips</a>
 					</li>
 				</ul>
 			</nav>

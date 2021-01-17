@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TransactionVerification | @ingameltd/node-przelewy24</title>
+	<title>RefundResult | @ingameltd/node-przelewy24</title>
 	<meta name="description" content="Documentation for @ingameltd/node-przelewy24">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,13 +55,13 @@
 					<a href="../modules.html">@ingameltd/node-przelewy24</a>
 				</li>
 				<li>
-					<a href="../modules/payments_transactionverification.html">payments/TransactionVerification</a>
+					<a href="../modules/refund.html">refund</a>
 				</li>
 				<li>
-					<a href="payments_transactionverification.transactionverification.html">TransactionVerification</a>
+					<a href="refund.refundresult.html">RefundResult</a>
 				</li>
 			</ul>
-			<h1>Interface TransactionVerification</h1>
+			<h1>Interface RefundResult</h1>
 		</div>
 	</div>
 </header>
@@ -71,13 +71,13 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>TransactionVerification</p>
+						<p>Refund result</p>
 					</div>
 					<dl class="tsd-comment-tags">
 						<dt>export</dt>
 						<dd></dd>
 						<dt>interface</dt>
-						<dd><p>TransactionVerification</p>
+						<dd><p>RefundResult</p>
 						</dd>
 					</dl>
 				</div>
@@ -86,7 +86,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">TransactionVerification</span>
+						<span class="target">RefundResult</span>
 					</li>
 				</ul>
 			</section>
@@ -97,11 +97,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="payments_transactionverification.transactionverification.html#p24_amount" class="tsd-kind-icon">p24_<wbr>amount</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="payments_transactionverification.transactionverification.html#p24_currency" class="tsd-kind-icon">p24_<wbr>currency</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="payments_transactionverification.transactionverification.html#p24_order_id" class="tsd-kind-icon">p24_<wbr>order_<wbr>id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="payments_transactionverification.transactionverification.html#p24_session_id" class="tsd-kind-icon">p24_<wbr>session_<wbr>id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="payments_transactionverification.transactionverification.html#p24_sign" class="tsd-kind-icon">p24_<wbr>sign</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="refund.refundresult.html#amount" class="tsd-kind-icon">amount</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="refund.refundresult.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="refund.refundresult.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="refund.refundresult.html#orderid" class="tsd-kind-icon">order<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="refund.refundresult.html#sessionid" class="tsd-kind-icon">session<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="refund.refundresult.html#status" class="tsd-kind-icon">status</a></li>
 							</ul>
 						</section>
 					</div>
@@ -110,101 +111,121 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="p24_amount" class="tsd-anchor"></a>
-					<h3>p24_<wbr>amount</h3>
-					<div class="tsd-signature tsd-kind-icon">p24_<wbr>amount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="amount" class="tsd-anchor"></a>
+					<h3>amount</h3>
+					<div class="tsd-signature tsd-kind-icon">amount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/688369f/src/payments/TransactionVerification.ts#L49">src/payments/TransactionVerification.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/43c59cd/src/refund/RefundResult.ts#L30">src/refund/RefundResult.ts:30</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Transaction amount from Merchant’s system</p>
+							<p>Amount of refund</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>memberof</dt>
-							<dd><p>TransactionVerification</p>
+							<dd><p>RefundResult</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="p24_currency" class="tsd-anchor"></a>
-					<h3>p24_<wbr>currency</h3>
-					<div class="tsd-signature tsd-kind-icon">p24_<wbr>currency<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="description" class="tsd-anchor"></a>
+					<h3>description</h3>
+					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/688369f/src/payments/TransactionVerification.ts#L57">src/payments/TransactionVerification.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/43c59cd/src/refund/RefundResult.ts#L38">src/refund/RefundResult.ts:38</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>PLN, EUR, GBP, CZK</p>
+							<p>Transaction description</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>memberof</dt>
-							<dd><p>TransactionVerification</p>
+							<dd><p>RefundResult</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="p24_order_id" class="tsd-anchor"></a>
-					<h3>p24_<wbr>order_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">p24_<wbr>order_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="message" class="tsd-anchor"></a>
+					<h3>message</h3>
+					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/688369f/src/payments/TransactionVerification.ts#L65">src/payments/TransactionVerification.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/43c59cd/src/refund/RefundResult.ts#L54">src/refund/RefundResult.ts:54</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Transaction number received from P24</p>
+							<p>Text description of successful refund</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>memberof</dt>
-							<dd><p>TransactionVerification</p>
+							<dd><p>RefundResult</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="p24_session_id" class="tsd-anchor"></a>
-					<h3>p24_<wbr>session_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">p24_<wbr>session_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="orderid" class="tsd-anchor"></a>
+					<h3>order<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">order<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/688369f/src/payments/TransactionVerification.ts#L41">src/payments/TransactionVerification.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/43c59cd/src/refund/RefundResult.ts#L14">src/refund/RefundResult.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A unique ID of the transaction from Merchant’s system</p>
+							<p>Transaction order ID from Przelewy24</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>memberof</dt>
-							<dd><p>TransactionVerification</p>
+							<dd><p>RefundResult</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="p24_sign" class="tsd-anchor"></a>
-					<h3>p24_<wbr>sign</h3>
-					<div class="tsd-signature tsd-kind-icon">p24_<wbr>sign<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="sessionid" class="tsd-anchor"></a>
+					<h3>session<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">session<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/688369f/src/payments/TransactionVerification.ts#L73">src/payments/TransactionVerification.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/43c59cd/src/refund/RefundResult.ts#L22">src/refund/RefundResult.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Sign for transaction data</p>
+							<p>Transaction session ID from the Partner’s system</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>memberof</dt>
-							<dd><p>TransactionVerification</p>
+							<dd><p>RefundResult</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="status" class="tsd-anchor"></a>
+					<h3>status</h3>
+					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ingameltd/node-przelewy24/blob/43c59cd/src/refund/RefundResult.ts#L46">src/refund/RefundResult.ts:46</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Was refund attempt successful?</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>memberof</dt>
+							<dd><p>RefundResult</p>
 							</dd>
 						</dl>
 					</div>
@@ -218,31 +239,40 @@
 						<a href="../modules.html">Exports</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/payments_transactionverification.html">payments/<wbr>Transaction<wbr>Verification</a>
+						<a href="../modules/refund.html">refund</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="refund.refund-1.html" class="tsd-kind-icon">Refund</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="refund.refundrequest.html" class="tsd-kind-icon">Refund<wbr>Request</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="payments_transactionverification.transactionverification.html" class="tsd-kind-icon">Transaction<wbr>Verification</a>
+						<a href="refund.refundresult.html" class="tsd-kind-icon">Refund<wbr>Result</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="payments_transactionverification.transactionverification.html#p24_amount" class="tsd-kind-icon">p24_<wbr>amount</a>
+								<a href="refund.refundresult.html#amount" class="tsd-kind-icon">amount</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="payments_transactionverification.transactionverification.html#p24_currency" class="tsd-kind-icon">p24_<wbr>currency</a>
+								<a href="refund.refundresult.html#description" class="tsd-kind-icon">description</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="payments_transactionverification.transactionverification.html#p24_order_id" class="tsd-kind-icon">p24_<wbr>order_<wbr>id</a>
+								<a href="refund.refundresult.html#message" class="tsd-kind-icon">message</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="payments_transactionverification.transactionverification.html#p24_session_id" class="tsd-kind-icon">p24_<wbr>session_<wbr>id</a>
+								<a href="refund.refundresult.html#orderid" class="tsd-kind-icon">order<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="payments_transactionverification.transactionverification.html#p24_sign" class="tsd-kind-icon">p24_<wbr>sign</a>
+								<a href="refund.refundresult.html#sessionid" class="tsd-kind-icon">session<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="refund.refundresult.html#status" class="tsd-kind-icon">status</a>
 							</li>
 						</ul>
 					</li>
