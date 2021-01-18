@@ -239,13 +239,14 @@ export class P24 {
      * Handle refund
      *
      * @param {RefundRequest} refundRequest
-     * @returns {Promise<SuccessResponse<RefundResult[]>>}
+     * @returns {Promise<RefundResult[]>}
      * @memberof P24
      */
-    public async refund (refundRequest: RefundRequest): Promise<SuccessResponse<RefundResult[]>> {
+    public async refund (refundRequest: RefundRequest): Promise<RefundResult[]> {
         try {
             const { data } = await this.client.post(EndpointRefund, refundRequest)
-            return <SuccessResponse<RefundResult[]>>data
+            const resp = <SuccessResponse<RefundResult[]>>data
+            return resp.data
         } catch (error) {
             if (error.response && error.response.data) {
                 if (error.response.data.code === 409) {
