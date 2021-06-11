@@ -48,7 +48,8 @@ import {
 ```typescript
 const p24 = new P24(
   merchantId, 
-  posId, 
+  posId,
+  apiKey,
   crcKey, 
   { 
     sandbox: false // enable or disable sandbox
