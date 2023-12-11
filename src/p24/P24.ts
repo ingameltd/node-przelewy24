@@ -25,37 +25,37 @@
 
 import Axios, { AxiosInstance } from 'axios';
 import { P24Error } from '../errors';
-import { P24Options } from './P24Options';
-import { validIps } from './ips';
-import {
-    SuccessResponse,
-    ErrorResponse
-} from '../responses';
-import { BaseParameters } from './BaseParameters';
-import { calculateSHA384 } from '../utils/hash';
 import {
     Order,
     OrderCreatedData,
     Transaction
 } from '../orders';
 import {
-    ProductionUrl,
-    SandboxUrl,
+    RefundRequest,
+    RefundResult
+} from '../refund';
+import {
+    ErrorResponse,
+    SuccessResponse
+} from '../responses';
+import { calculateSHA384 } from '../utils/hash';
+import {
+    NotificationRequest,
+    Verification,
+    VerificationData
+} from '../verify';
+import { BaseParameters } from './BaseParameters';
+import { P24Options } from './P24Options';
+import {
+    EndpointRefund,
     EndpointTestAccess,
     EndpointTransactionRegister,
     EndpointTransactionRequest,
     EndpointTransactionVerify,
-    EndpointRefund
+    ProductionUrl,
+    SandboxUrl
 } from './endpoints';
-import {
-    Verification,
-    NotificationRequest,
-    VerificationData
-} from '../verify';
-import {
-    RefundRequest,
-    RefundResult
-} from '../refund';
+import { validIps } from './ips';
 
 
 
@@ -127,8 +127,8 @@ export class P24 {
             const { data } = await this.client.get(EndpointTestAccess)
             const res = <SuccessResponse<boolean>>data
             return res.data === true
-        } catch (error) {
-            if (error.response && error.response.data) {
+        } catch (error: any) {
+            if (error?.response?.data) {
                 const resp = <ErrorResponse<string>>error.response.data
                 throw new P24Error(resp.error, resp.code)
             }
@@ -170,8 +170,8 @@ export class P24 {
             }
 
             return transaction
-        } catch (error) {
-            if (error.response && error.response.data) {
+        } catch (error: any) {
+            if (error?.response?.data) {
                 const resp = <ErrorResponse<string>>error.response.data
                 throw new P24Error(resp.error, resp.code)
             }
@@ -209,8 +209,8 @@ export class P24 {
             const { data } = await this.client.put(EndpointTransactionVerify, verificationData)
             const result = <SuccessResponse<VerificationData>>data
             return result.data.status === 'success'
-        } catch (error) {
-            if (error.response && error.response.data) {
+        } catch (error: any) {
+            if (error?.response?.data) {
                 const resp = <ErrorResponse<string>>error.response.data
                 throw new P24Error(resp.error, resp.code)
             }
@@ -247,8 +247,8 @@ export class P24 {
             const { data } = await this.client.post(EndpointRefund, refundRequest)
             const resp = <SuccessResponse<RefundResult[]>>data
             return resp.data
-        } catch (error) {
-            if (error.response && error.response.data) {
+        } catch (error: any) {
+            if (error?.response?.data) {
                 if (error.response.data.code === 409) {
                     const resp = <ErrorResponse<RefundResult[]>>error.response.data
                     throw new P24Error('Refund Conflict', resp.code, resp.error)

@@ -35,10 +35,10 @@
   "homepage": "https://github.com/ingameltd/node-przelewy24#readme",
   "devDependencies": {
     "@types/node": "^13.1.0",
-    "typedoc": "^0.20.16",
+    "typedoc": "^0.25.4",
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^1.6.2"
   }
 }
